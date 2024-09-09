@@ -5,6 +5,11 @@
    margin: auto;
 }
 
+h1, h2 {
+    min-height: 48px;
+    text-align: center;
+}
+
 .navbar /* Navigation */{
 
 }
