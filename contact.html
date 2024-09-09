@@ -13,16 +13,63 @@
             <li><a href="index.html">HOME</a></li>
             <li><a href="about.html">ABOUT</a></li>
             <li><a href="contact.html">CONTACT</a></li>
-        </ul>
+        </ul>       
+           
+         <!--contact formulier -->
+         <h2>Contactformulier</h2>
+         <form>
+            <!--aanhef & naam -->
+            <h3>Naam</h3>
+            <label for="aanhef">Aanhef</label>
+            <select id="aanhef" name="Aanhef">
+                <option value="merv">Mevr.</option>
+                <option value="dhr">Dhr.</option>
+                <option value="mx">Mx.</option>
+                <option value="-">Zeg ik liever niet</option>
+            </select><br>
+            <label for="voornaam">Voornaam:</label>
+            <input type="text" id="voornaam" name="voornaam"><br>
+            <label for="achternaam">Achternaam:</label>
+            <input type="text" id="achternaam" name="achternaam"><br>
 
-        <!--Onder de lijst een formulier met daarin:
-                Een dropdown voor aanhef (Dhr., Mvr., ...).
-                Invoervelden voor naam, email, telefoonnumer en postadres (Straat, Nr + toevoeging, Postcode en Woonplaats).
-                Een radiobutton groep genaamd "communicatievoorkeur" die ofwel 'Email', ofwel 'Telefoon', ofwel 'Post' kan zijn.
-                Een invoerveld voor het bericht waarover ze contact willen opnemen (met meerdere regels).
-                Een verstuur knop.-->     
+            <!--contactgegevens-->
+            <h3>Contactgegevens</h3>
+            <!--e-mail input-->
+            <label for="email">E-mail adres:</label>
+            <input type="email" id="email" name="email"><br>
+            <!--telefoon input-->
+            <label for="telnr">Telefoonnummer:</label>
+            <input type="tel" id="telnr" name="telnr"><br>
+            <!--adres input-->
+            <label for="straat">Straatnaam:</label>
+            <input type="text" id="straat" name="straat"><br>
+            <label for="huisnr">Huisnummer:</label>
+            <input type="text" id="huisnr" name="huisnr">
+            <label for="huisnrtoev">Toevoegingen:</label>
+            <input type="text" id="huisnrtoev" name="huisnrtoev"><br>
+            <label for="postcode">Postcode:</label>
+            <input type="text" id="postcode" name="postcode">
+            <label for="stad">Stad:</label>
+            <input type="text" id="stad" name="stad"><br>
+            <!--communicatievoorkeur"-->
+            <p><b>Geef een communicatievoorkeur aan:</b></p>
+            <input type="radio" id="commvoorkeur" name="commvoorkeur" value="email">
+            <label for="email">E-mail</label><br>
+            <input type="radio" id="commvoorkeur" name="commvoorkeur" value="telefoon">
+            <label for="telefoon">Telefoon</label><br>
+            <input type="radio" id="commvoorkeur" name="commvoorkeur" value="post">
+            <label for="post">Post</label>
+
+
+            <!--bericht-->
+            <h3>Bericht</h3>
+            <label for="bericht">Type hier je bericht:</label><br>
+            <textarea name="bericht" rows="10" cols="30"></textarea>
+
+            <!--Een verstuur knop.-->
+        </form> 
    </body>
-   
+
    <footer>
         <!--copyright reken, jaartal en auteur-->
         <p>&copy;2024 Lonne Olmeyer</p>
