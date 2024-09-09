@@ -4,7 +4,11 @@
    <head>
 
     <meta charset="utf-8">
-    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
    </head>
    <body>
 <!--Titel-->
@@ -15,6 +19,124 @@
     <li><a href="about.html">ABOUT</a></li>
     <li><a href="contact.html">CONTACT</a></li>
 </ul>
+
+<!--Onder de lijst een formulier met daarin:
+        Een dropdown voor aanhef (Dhr., Mvr., ...).
+        Invoervelden voor naam, email, telefoonnumer en postadres (Straat, Nr + toevoeging, Postcode en Woonplaats).
+        Een radiobutton groep genaamd "communicatievoorkeur" die ofwel 'Email', ofwel 'Telefoon', ofwel 'Post' kan zijn.
+        Een invoerveld voor het bericht waarover ze contact willen opnemen (met meerdere regels).
+        Een verstuur knop.-->
+
+
+        <form class="form-horizontal">
+            <fieldset>
+            
+            <!-- Form Name -->
+            <legend>Form Name</legend>
+            
+            <!-- Button Drop Down -->
+           <!-- Button Drop Down -->
+            <div class="form-group">
+            <label class="col-md-4 control-label" for="buttondropdown">Aanhef</label>
+            <div class="col-md-2">
+                <div class="input-group">
+                <input id="buttondropdown" name="buttondropdown" class="form-control" placeholder="Dhr., Mevr..." type="text" required="">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Kies
+                    <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right">
+                    <li><a href="#">Dhr.</a></li>
+                    <li><a href="#">Mevr.</a></li>
+                    <li><a href="#">Mx.</a></li>
+                    <li><a href="#">Laat leeg</a></li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            </div>
+            
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="naam">Naam</label>  
+              <div class="col-md-4">
+              <input id="naam" name="naam" type="text" placeholder="" class="form-control input-md" required="">
+                
+              </div>
+            </div>
+            
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="email">E-mail adres</label>  
+              <div class="col-md-4">
+              <input id="email" name="email" type="text" placeholder="" class="form-control input-md" required="">
+                
+              </div>
+            </div>
+            
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="tel">Telefoonnr.</label>  
+              <div class="col-md-4">
+              <input id="tel" name="tel" type="text" placeholder="" class="form-control input-md">
+                
+              </div>
+            </div>
+            
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="adres">Post adres</label>  
+              <div class="col-md-4">
+              <input id="adres" name="adres" type="text" placeholder="" class="form-control input-md">
+                
+              </div>
+            </div>
+            
+            <!-- Multiple Radios -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="Communicatievoorkeur">Communicatievoorkeur </label>
+              <div class="col-md-4">
+              <div class="radio">
+                <label for="Communicatievoorkeur-0">
+                  <input type="radio" name="Communicatievoorkeur" id="Communicatievoorkeur-0" value="1" checked="checked">
+                  Email
+                </label>
+                </div>
+              <div class="radio">
+                <label for="Communicatievoorkeur-1">
+                  <input type="radio" name="Communicatievoorkeur" id="Communicatievoorkeur-1" value="2">
+                  Telefoon
+                </label>
+                </div>
+              <div class="radio">
+                <label for="Communicatievoorkeur-2">
+                  <input type="radio" name="Communicatievoorkeur" id="Communicatievoorkeur-2" value="3">
+                  Post
+                </label>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Textarea -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="bericht">Bericht</label>
+              <div class="col-md-4">                     
+                <textarea class="form-control" id="bericht" name="bericht">Type hier je bericht</textarea>
+              </div>
+            </div>
+            
+            <!-- Button -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="verzendknop"></label>
+              <div class="col-md-4">
+                <button id="verzendknop" name="verzendknop" class="btn btn-primary">Verzenden</button>
+              </div>
+            </div>
+            
+            </fieldset>
+            </form>
+            
    </body>
    <footer>
 <!--copyright reken, jaartal en auteur-->
