@@ -11,10 +11,33 @@ h1, h2 {
 }
 
 .navbar /* Navigation */{
+    background
 
 }
 
-.menu {}
+ul.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li.navbar {
+    float: left;
+}
+
+li.navbar a {
+    display: block;
+    color: white;
+    background-color: blue;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+li.navbar a:hover {
+    background-color: white;
+    color: black;
+}
 
 .content /* Content */{
     width: 800px;
