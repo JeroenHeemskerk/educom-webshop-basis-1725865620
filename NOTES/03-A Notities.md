@@ -1,0 +1,1 @@
+Gelezen tot en met  PHP Variables (https://www.w3schools.com/php7/)
