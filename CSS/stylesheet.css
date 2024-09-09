@@ -3,13 +3,19 @@
 * {
    font-family: Verdana, Geneva, Tahoma, sans-serif;
    margin: auto;
-   font-size: 12px;
-   color:rgb(54, 53, 53);
+   
 }
 
 h1, h2 {
     min-height: 48px;
     text-align: center;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    font-size: 10px;
+    text-align: right;
 }
 
 .navbar /* Navigation */{
@@ -43,5 +49,7 @@ li.navbar a:hover {
 
 .content /* Content */{
     width: 800px;
+    font-size: 12px;
+    color:rgb(54, 53, 53);
 
 }
