@@ -1,16 +1,17 @@
 /* Cascade Style Sheet for this website */
 
-* {;
-    
-}
-
-body {
-
+* {
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   margin: auto;
 }
 
 .navbar /* Navigation */{
 
 }
 
+.menu {}
+
 .content /* Content */{
+    width: 800px;
+
 }
