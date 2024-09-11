@@ -9,12 +9,113 @@
         //initiate variables 
         $salutation = $firstName = $lastName = $email = $phone = $street = $housenumber = $housenumberAddition = $postal = $city = $commPreference = $message = '';
 
-        $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $streetErr = $housenumberErr = $housenumberAdditionErr = $postalErr = $cityErr = $commPreferenceErr = $messageErr = '';
+        $salutationErr = $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $streetErr = $housenumberErr = $housenumberAdditionErr = $postalErr = $cityErr = $commPreferenceErr = $messageErr = '';
 
+        $valid = false;
         
-        //validate POST data
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $salutation = test_input($_POST[salutation]);
+            $firstName = test_input($_POST[firstName]);
+            $lastName = test_input($_POST[lastName]);
+            $email = test_input($_POST[email]);
+            $phone = test_input($_POST[phone]);
+            $street = test_input($_POST[street]);
+            $housenumber = test_input($_POST[housenumber]);
+            $housenumberAddition = test_input($_POST[housenumberAddition]);
+            $postal = test_input($_POST[postal]);
+            $city = test_input($_POST[city]);
+            $commPreference = test_input($_POST[commPreference]);
+            $message = test_input($_POST[message]);
+            
+            if(empty($_POST["salutation"])) {
+                $salutationErr = "Aanhef is vereist";
+            } else {
+                $salutation = test_input($_POST["salutation"]);
+            }
 
-        // GET data 
+            if(empty($_POST["firstName"])) {
+                $firstNameErr = "Voornaam is vereist";
+            } else {
+                $firstName = test_input($_POST["firstName"]);
+            }
+
+            if(empty($_POST["lastName"])) {
+                $lastNameErr = "Achternaam is vereist";
+            } else {
+                $lastName = test_input($_POST["lastName"]);
+            }
+
+            switch ($commPreference) {
+                case "email":
+                    if(empty($_POST["email"])) {
+                        $emailErr = "E-mail is vereist";
+                    } else {
+                        $email = test_input($_POST["email"]);
+                    }
+                    break;
+                case "phone":
+                    if(empty($_POST["phone"])) {
+                        $phoneErr = "Telefoonnummer is vereist";
+                    } else {
+                        $phone = test_input($_POST{"phone"});
+                    }
+                    break;
+                case "postal":
+                    if(empty($_POST["street"])) {
+                        $streetErr = "Straatnaam is vereist";
+                    } else {
+                        $street = test_input($_POST["street"]);
+                    }
+        
+                    if(empty($_POST["housenumber"])) {
+                        $housenumberErr = "Huisnummer is vereist";
+                    } else {
+                        $housenumber = test_input($_POST["housenumber"]);
+                    } 
+
+                    if(empty($_POST["postal"])) {
+                        $postalErr = "Postcode is vereist";
+                    } else {
+                        $postal = test_input($_POST["postal"]);
+                    }  
+
+                    if(empty($_POST["city"])) {
+                        $cityErr = "Stad is vereist";
+                    } else {
+                        $city = test_input($_POST["city"]);
+                    }  
+                case (empty($_POST["commPreference"])):
+                    if(empty($_POST["commPreference"])) {
+                    $commPreferenceErr = "Selecteer een communicatievoorkeur";
+                    } else {
+                        $commPreference = test_input($_POST["commPreference"]);
+                    }
+                }
+                break;
+            }
+
+            //Validate adress complete if one or more fields are filled
+
+            if(empty($_POST["message"])) {
+                $messageErr = "Bericht is vereist";
+            } else {
+                $message = test_input($_POST["message"]);
+            }
+
+            
+
+        function test_input($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
+
+        //validate form
+
+        $valid = //validate
+
+        // in body, display form with errors or success message
         ?>
         <!--navigation bar-->
         <div class="navbar">
@@ -28,7 +129,7 @@
         <div class="content"><!--content-->      
         <!--contact formulier -->
             <h2>Contactformulier</h2>
-            <form>
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <!--aanhef & naam -->
                 <h3>Naam</h3>
                 <div>
