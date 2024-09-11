@@ -3,6 +3,9 @@
 <html>
     <head>
         <link rel="stylesheet" href="css/stylesheet.css">
+        
+        <title>Educom Webshop Basis</title>
+    
     </head>
     <body>
         <?php
