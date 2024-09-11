@@ -28,48 +28,71 @@
             <form>
             <!--aanhef & naam -->
                 <h3>Naam</h3>
-                <label for="salutation">Aanhef</label><!--na overleg bootsnipp form vervangen door html form: select tag gebruikt voor dropdown-->
-                <select id="salutation" name="salutation">
-                    <option value="mrs">Mevr.</option>
-                    <option value="mr">Dhr.</option>
-                    <option value="mx">Mx.</option>
-                    <option value="undisclosed">Zeg ik liever niet</option>
-                </select><br>
-                <label for="firstName">Voornaam:</label>
-                <input type="text" id="firstName" name="firstName"><br>
-                <label for="lastName">Achternaam:</label>
-                <input type="text" id="lastName" name="lastName"><br>
+                <div>
+                    <label for="salutation">Aanhef</label>
+                    <select id="salutation" name="salutation">
+                        <option value="mrs">Mevr.</option>
+                        <option value="mr">Dhr.</option>
+                        <option value="mx">Mx.</option>
+                        <option value="undisclosed">Zeg ik liever niet</option>
+                    </select>
+                </div> 
+                <div>     
+                    <label for="firstName">Voornaam:</label>
+                    <input type="text" id="firstName" name="firstName">
+                </div>
+                <div>
+                    <label for="lastName">Achternaam:</label>
+                    <input type="text" id="lastName" name="lastName">
+                </div>
 
                 <!--contactgegevens-->
                 <h3>Contactgegevens</h3>
                 <!--e-mail input-->
-                <label for="email">E-mail adres:</label>
-                <input type="email" id="email" name="email"><br>
+                <div>
+                    <label for="email">E-mail adres:</label>
+                    <input type="email" id="email" name="email">
+                </div>
                 <!--telefoon input-->
-                <label for="phone">Telefoonnummer:</label>
-                <input type="tel" id="phone" name="phone"><br>
+                <div>
+                    <label for="phone">Telefoonnummer:</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
                 <!--adres input-->
-                <fieldset>
-                    <label for="street">Straatnaam:</label>
-                    <input type="text" id="street" name="street"><br>
-                    <label for="housenumber">Huisnummer:</label>
-                    <input type="text" id="housenumber" name="housenumber"><br>
-                    <label for="housenumberAddition">Toevoegingen:</label> 
-                    <input type="text" id="housenumberAddition" name="housenumberAddition"><br><!--aanpassen naar engels-->
-                    <label for="postal">Postcode:</label>
-                    <input type="text" id="postal" name="postal"><br>
-                    <label for="city">Stad:</label>
-                    <input type="text" id="city" name="city"><br>
-                </fieldset>
-                    
+                <div>
+                    <fieldset>
+                        <div>
+                            <label for="street">Straatnaam:</label>
+                            <input type="text" id="street" name="street">
+                        </div>
+                        <div>
+                            <label for="housenumber">Huisnummer:</label>
+                            <input type="text" id="housenumber" name="housenumber">
+                        </div>
+                        <div>
+                            <label for="housenumberAddition">Toevoegingen:</label> 
+                            <input type="text" id="housenumberAddition" name="housenumberAddition">
+                        </div>
+                        <div>
+                            <label for="postal">Postcode:</label>
+                            <input type="text" id="postal" name="postal">
+                        </div>
+                        <div>
+                            <label for="city">Stad:</label>
+                            <input type="text" id="city" name="city">
+                        </div>
+                    </fieldset>
+                </div>    
                 <!--communicatievoorkeur"-->
                 <p><b>Geef een communicatievoorkeur aan:</b></p>
-                <label for="commPreferenceEmail">E-mail</label>
-                <input type="radio" id="commPreferenceEmail" name="commPreference" value="email">
-                <label for="commPreferencePhone">Telefoon</label>
-                <input type="radio" id="commPreferencePhone" name="commPreference" value="phone">
-                <label for="commPreferencePostal">Post</label>
-                <input type="radio" id="commPreferencePostal" name="commPreference" value="postal">
+                <div>
+                    <label for="commPreferenceEmail">E-mail</label>
+                    <input type="radio" id="commPreferenceEmail" name="commPreference" value="email">
+                    <label for="commPreferencePhone">Telefoon</label>
+                    <input type="radio" id="commPreferencePhone" name="commPreference" value="phone">
+                    <label for="commPreferencePostal">Post</label>
+                    <input type="radio" id="commPreferencePostal" name="commPreference" value="postal">
+                </div>
                 
 
 
