@@ -5,12 +5,20 @@
         <link rel="stylesheet" href="css/stylesheet.css">
     </head>
     <body>
+        <?php
+        //initiate variables 
+        
+
+        //validate POST data
+
+        // GET data 
+        ?>
         <!--navigation bar-->
         <div class="navbar">
             <ul class="navbar">
                 <li class="navbar"><a href="index.html">HOME</a></li>
                 <li class="navbar"><a href="about.html">ABOUT</a></li>
-                <li class="navbar"><a href="contact.html">CONTACT</a></li>
+                <li class="navbar"><a href="contact.php">CONTACT</a></li>
             </ul>
         </div>
 
