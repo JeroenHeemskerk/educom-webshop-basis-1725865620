@@ -7,7 +7,7 @@
     <body>
         <?php
         //initiate variables 
-        
+
 
         //validate POST data
 
@@ -28,17 +28,17 @@
             <form>
             <!--aanhef & naam -->
                 <h3>Naam</h3>
-                <label for="aanhef">Aanhef</label><!--na overleg bootsnipp form vervangen door html form: select tag gebruikt voor dropdown-->
-                <select id="aanhef" name="Aanhef">
-                    <option value="merv">Mevr.</option>
-                    <option value="dhr">Dhr.</option>
+                <label for="salutation">Aanhef</label><!--na overleg bootsnipp form vervangen door html form: select tag gebruikt voor dropdown-->
+                <select id="salutation" name="salutation">
+                    <option value="mrs">Mevr.</option>
+                    <option value="mr">Dhr.</option>
                     <option value="mx">Mx.</option>
-                    <option value="-">Zeg ik liever niet</option>
+                    <option value="undisclosed">Zeg ik liever niet</option>
                 </select><br>
-                <label for="voornaam">Voornaam:</label>
-                <input type="text" id="voornaam" name="voornaam"><br>
-                <label for="achternaam">Achternaam:</label>
-                <input type="text" id="achternaam" name="achternaam"><br>
+                <label for="firstName">Voornaam:</label>
+                <input type="text" id="firstName" name="firstName"><br>
+                <label for="lastName">Achternaam:</label>
+                <input type="text" id="lastName" name="lastName"><br>
 
                 <!--contactgegevens-->
                 <h3>Contactgegevens</h3>
@@ -46,35 +46,36 @@
                 <label for="email">E-mail adres:</label>
                 <input type="email" id="email" name="email"><br>
                 <!--telefoon input-->
-                <label for="telnr">Telefoonnummer:</label>
-                <input type="tel" id="telnr" name="telnr"><br>
+                <label for="phone">Telefoonnummer:</label>
+                <input type="tel" id="phone" name="phone"><br>
                 <!--adres input-->
                 <fieldset>
-                    <label for="straat">Straatnaam:</label>
-                    <input type="text" id="straat" name="straat"><br>
-                    <label for="huisnr">Huisnummer:</label>
-                    <input type="text" id="huisnr" name="huisnr"><br>
-                    <label for="huisnrtoev">Toevoegingen:</label>
-                    <input type="text" id="huisnrtoev" name="huisnrtoev"><br>
-                    <label for="postcode">Postcode:</label>
-                    <input type="text" id="postcode" name="postcode"><br>
-                    <label for="stad">Stad:</label>
-                    <input type="text" id="stad" name="stad"><br>
+                    <label for="street">Straatnaam:</label>
+                    <input type="text" id="street" name="street"><br>
+                    <label for="housenumber">Huisnummer:</label>
+                    <input type="text" id="housenumber" name="housenumber"><br>
+                    <label for="housenumberAddition">Toevoegingen:</label> 
+                    <input type="text" id="housenumberAddition" name="housenumberAddition"><br><!--aanpassen naar engels-->
+                    <label for="postal">Postcode:</label>
+                    <input type="text" id="postal" name="postal"><br>
+                    <label for="city">Stad:</label>
+                    <input type="text" id="city" name="city"><br>
                 </fieldset>
                     
                 <!--communicatievoorkeur"-->
                 <p><b>Geef een communicatievoorkeur aan:</b></p>
-                <input type="radio" id="commvoorkeur" name="commvoorkeur" value="email">
-                <label for="email">E-mail</label><br>
-                <input type="radio" id="commvoorkeur" name="commvoorkeur" value="telefoon">
-                <label for="telefoon">Telefoon</label><br>
-                <input type="radio" id="commvoorkeur" name="commvoorkeur" value="post">
-                <label for="post">Post</label>
+                <label for="commPreferenceEmail">E-mail</label>
+                <input type="radio" id="commPreferenceEmail" name="commPreference" value="email">
+                <label for="commPreferencePhone">Telefoon</label>
+                <input type="radio" id="commPreferencePhone" name="commPreference" value="phone">
+                <label for="commPreferencePostal">Post</label>
+                <input type="radio" id="commPreferencePostal" name="commPreference" value="postal">
+                
 
 
                 <!--bericht-->
                 <h3>Bericht</h3>
-                <textarea name="bericht" rows="10" cols="30" placeholder="Type hier je bericht..."></textarea><br>
+                <textarea name="message" rows="10" cols="30" placeholder="Type hier je bericht..."></textarea><br>
                 <!--Een verstuur knop.-->
                 <input type="submit"></input>
             </form> 
