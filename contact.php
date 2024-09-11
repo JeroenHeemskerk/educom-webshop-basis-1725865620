@@ -7,8 +7,11 @@
     <body>
         <?php
         //initiate variables 
+        $salutation = $firstName = $lastName = $email = $phone = $street = $housenumber = $housenumberAddition = $postal = $city = $commPreference = $message = '';
 
+        $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $streetErr = $housenumberErr = $housenumberAdditionErr = $postalErr = $cityErr = $commPreferenceErr = $messageErr = '';
 
+        
         //validate POST data
 
         // GET data 
