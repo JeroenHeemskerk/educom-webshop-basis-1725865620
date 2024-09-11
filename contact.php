@@ -208,12 +208,12 @@
             </form> 
 
         </div>
-        
+        <footer>
+        <!--copyright reken, jaartal en auteur-->
+        <p>&copy;2024 Lonne Olmeyer</p>
+        </footer>  
     </body>
 
- <footer>
-  <!--copyright reken, jaartal en auteur-->
-  <p>&copy;2024 Lonne Olmeyer</p>
- </footer>
+ 
 
 </html>
