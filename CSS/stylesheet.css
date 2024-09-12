@@ -47,11 +47,26 @@ h1, h2 {
 
 }
 
-input {
+input, textarea, select {
     width: 400px;
 }
 
+input[type="radio"],input[type="submit"] {
+    width:auto;
+}
 
+label {
+    display:inline-block;
+    width: 125px;
+}
+
+input[type="radio"]+label{
+    width:auto;
+}
+
+.error {
+    color:red;
+}
 
 footer {
     background-color: black;

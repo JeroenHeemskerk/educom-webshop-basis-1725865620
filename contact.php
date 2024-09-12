@@ -9,10 +9,10 @@
     </head>
     <body>
         <?php
-        //initiate variables 
+        //initiate variables to collect form input
         $salutation = $firstName = $lastName = $email = $phone = $street = $housenumber = $housenumberAddition = $postal = $city = $commPreference = $message = '';
 
-        $salutationErr = $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $streetErr = $housenumberErr = $housenumberAdditionErr = $postalErr = $cityErr = $commPreferenceErr = $messageErr = '';
+        $salutationErr = $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $streetErr = $housenumberErr = $housenumberAdditionErr = $postalErr = $cityErr = $commPreferenceErr = $messageErr = ''; //iniate variables to enter error messages
 
         $valid = false;
         
@@ -35,7 +35,6 @@
                 $firstNameErr = "Voornaam is vereist";
             } else {
                 $firstName = cleanString($_POST["firstName"]);
-                $firstName = cleanString($_POST["firstName"]);
                 if (!preg_match("/^[a-zA-Z-']*$/",$firstName)) {
                    $firstNameErr = "Alleen letters en spaties zijn toegestaan";
                 }
@@ -45,66 +44,73 @@
                 $lastNameErr = "Achternaam is vereist";
             } else {
                 $lastName = cleanString($_POST["lastName"]);
+                if (!preg_match("/^[a-zA-Z-']*$/",$firstName)) {
+                    $firstNameErr = "Alleen letters en spaties zijn toegestaan";
+                }
             }
             
-            switch ($commPreference) { //switch werkt niet//
-                case "email":
-                    if(empty($_POST["email"])) {
-                        $emailErr = "E-mail is vereist";
-                    } else {
-                        $email = cleanString($_POST["email"]);
-                        $email = cleanString($_POST["email"]);
-                        if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                           $emailErr = "Ongeldig e-mail adres";
+            if(empty($_POST["commPreference"])) {
+            $commPreferenceErr = "Selecteer een communicatievoorkeur";
+            } else {
+                switch ($commPreference) {
+                    case "email":
+                        if(empty($_POST["email"])) {
+                            $emailErr = "E-mail is vereist";
+                        } else {
+                            $email = cleanString($_POST["email"]);
+                            if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                               $emailErr = "Ongeldig e-mail adres";
+                            }
                         }
-                    }
-                    break;
-                case "phone":
-                    if(empty($_POST["phone"])) {
-                        $phoneErr = "Telefoonnummer is vereist";
-                    } else {
-                        $phone = cleanString($_POST["phone"]);
-                        $phone = cleanString($_POST["phone"]);
-                        if (!filter_var($phone, FILTER_VALIDATE_INT)){
-                           $phoneErr = "Ongeldig telefoonummer";
+                        break;
+                    case "phone":
+                        if(empty($_POST["phone"])) {
+                            $phoneErr = "Telefoonnummer is vereist";
+                        } else {
+                            $phone = cleanString($_POST["phone"]);
+                            if (!preg_match('/^[0-9]{10}+$/', $phone)){
+                               $phoneErr = "Ongeldig telefoonummer";
+                            }//deze wordt niet correct uitgevoerd, form gaat gewoon door 
                         }
-                    }
-                    break;
-                case "postal":
-                    if(empty($_POST["street"])) {
-                        $streetErr = "Straatnaam is vereist";
-                    } else {
-                        $street = cleanString($_POST["street"]);
-                    }
-        
-                    if(empty($_POST["housenumber"])) {
-                        $housenumberErr = "Huisnummer is vereist";
-                    } else {
-                        $housenumber = cleanString($_POST["housenumber"]);
-                    } 
+                        break;
+                    case "postal":
+                        if(empty($_POST["street"])) {
+                            $streetErr = "Straatnaam is vereist";
+                        } else {
+                            $street = cleanString($_POST["street"]);
 
-                    if(empty($_POST["postal"])) {
-                        $postalErr = "Postcode is vereist";
-                    } else {
-                        $postal = cleanString($_POST["postal"]);
-                    }  
-
-                    if(empty($_POST["city"])) {
-                        $cityErr = "Stad is vereist";
-                    } else {
-                        $city = cleanString($_POST["city"]);
-                    }  
-                    break;
-                case (empty($_POST["commPreference"])):
-                    if(empty($_POST["commPreference"])) {
-                    $commPreferenceErr = "Selecteer een communicatievoorkeur";
-                    } else {
-                        $commPreference = cleanString($_POST["commPreference"]);
-                    }
-                    break; 
-                }
+                        }
             
+                        if(empty($_POST["housenumber"])) {
+                            $housenumberErr = "Huisnummer is vereist";
+                        } else {
+                            $housenumber = cleanString($_POST["housenumber"]);
 
+                        } 
+
+                        if(!empty($_POST["housenumberAddition"])) {
+                            $housenumberAddition = cleanString($_POST["housenumberAddition"]);
+
+                        }
+    
+                        if(empty($_POST["postal"])) {
+                            $postalErr = "Postcode is vereist";
+                        } else {
+                            $postal = cleanString($_POST["postal"]);
+
+                        }  
+    
+                        if(empty($_POST["city"])) {
+                            $cityErr = "Stad is vereist";
+                        } else {
+                            $city = cleanString($_POST["city"]);
+                        }  
+                        break;
+                    }
+                    
+                
+            }
+   
             //Validate adress complete if one or more fields are filled
 
             if(empty($_POST["message"])) {
@@ -112,20 +118,13 @@
             } else {
                 $message = cleanString($_POST["message"]);
             }
-
-            
-
-            
             
             //validate form
+            if(empty($salutationErr)&&  empty($firstNameErr)&& empty($lastNameErr)&& empty($emailErr)&& empty($phoneErr)&& empty($streetErr)&& empty($housenumberErr)&& empty($housenumberAdditionErr)&& empty($postalErr)&& empty($cityErr)&& empty($commPreferenceErr)&& empty($messageErr)){
+                $valid = true;
+            }
             
         }
-
-        if(empty($salutationErr, $firstNameErr, $lastNameErr, $emailErr, $phoneErr, $streetErr, $housenumberErr, $housenumberAdditionErr, $postalErr, $cityErr, $commPreferenceErr, $messageErr)){
-            $valid = true}
-        
-        
-        // in body, display form with errors or success message
         ?>
         <!--navigation bar-->
         <div class="navbar">
@@ -138,14 +137,14 @@
         
         <div class="content"><!--content-->      
             <!--contact formulier -->
-            <?php if($valid=false){ /*Show only if form is not valid*/?>
+            <?php if(!$valid){ /*Show only if form is not valid*/?>
             <h2>Contactformulier</h2>
             <form method="post">
                 <!--aanhef & naam -->
                 <h3>Naam</h3>
                 <div>
                     <label for="salutation">Aanhef</label>
-                    <select id="salutation" name="salutation">
+                    <select id="salutation" name="salutation" value="<?php echo $salutation;?>">
                         <option value="mrs">Mevr.</option>
                         <option value="mr">Dhr.</option>
                         <option value="mx">Mx.</option>
@@ -155,12 +154,12 @@
                 </div> 
                 <div>     
                     <label for="firstName">Voornaam:</label>
-                    <input type="text" id="firstName" name="firstName">
+                    <input type="text" id="firstName" name="firstName" value="<?php echo $firstName;?>">
                     <span class="error"><?php echo $firstNameErr;?></span>
                 </div>
                 <div>
                     <label for="lastName">Achternaam:</label>
-                    <input type="text" id="lastName" name="lastName">
+                    <input type="text" id="lastName" name="lastName" value="<?php echo $lastName;?>">
                     <span class="error"><?php echo $lastNameErr;?></span>
                 </div>
                 
@@ -169,13 +168,13 @@
                 <!--e-mail input-->
                 <div>
                     <label for="email">E-mail adres:</label>
-                    <input type="email" id="email" name="email">
+                    <input type="email" id="email" name="email" value="<?php echo $email;?>">
                     <span class="error"><?php echo $emailErr;?></span>
                 </div>
                 <!--telefoon input-->
                 <div>
                     <label for="phone">Telefoonnummer:</label>
-                    <input type="tel" id="phone" name="phone">
+                    <input type="tel" id="phone" name="phone" value="<?php echo $phone;?>">
                     <span class="error"><?php echo $phoneErr;?></span>
                 </div>
                 <!--adres input-->
@@ -183,27 +182,27 @@
                     <fieldset>
                         <div>
                             <label for="street">Straatnaam:</label>
-                            <input type="text" id="street" name="street">
+                            <input type="text" id="street" name="street" value="<?php echo $street;?>">
                             <span class="error"><?php echo $streetErr;?></span>
                         </div>
                         <div>
                             <label for="housenumber">Huisnummer:</label>
-                            <input type="text" id="housenumber" name="housenumber">
+                            <input type="text" id="housenumber" name="housenumber" value="<?php echo $housenumber;?>">
                             <span class="error"><?php echo $housenumberErr;?></span>
                         </div>
                         <div>
                             <label for="housenumberAddition">Toevoegingen:</label> 
-                            <input type="text" id="housenumberAddition" name="housenumberAddition">
+                            <input type="text" id="housenumberAddition" name="housenumberAddition" value="<?php echo $housenumberAddition;?>">
                             <span class="error"><?php echo $housenumberAdditionErr;?></span>
                         </div>
                         <div>
                             <label for="postal">Postcode:</label>
-                            <input type="text" id="postal" name="postal">
+                            <input type="text" id="postal" name="postal" value="<?php echo $postal;?>">
                             <span class="error"><?php echo $postalErr;?></span>
                         </div>
                         <div>
                             <label for="city">Stad:</label>
-                            <input type="text" id="city" name="city">
+                            <input type="text" id="city" name="city" value="<?php echo $city;?>">
                             <span class="error"><?php echo $cityErr;?></span>
                         </div>
                     </fieldset>
@@ -211,21 +210,23 @@
                 <!--communicatievoorkeur"-->
                 <p><b>Geef een communicatievoorkeur aan:</b></p>
                 <div>
-                    <label for="commPreferenceEmail">E-mail</label>
                     <input type="radio" id="commPreferenceEmail" name="commPreference" value="email">
-                    <label for="commPreferencePhone">Telefoon</label>
+                    <label for="commPreferenceEmail">E-mail</label>
                     <input type="radio" id="commPreferencePhone" name="commPreference" value="phone">
-                    <label for="commPreferencePostal">Post</label>
+                    <label for="commPreferencePhone">Telefoon</label>
                     <input type="radio" id="commPreferencePostal" name="commPreference" value="postal">
+                    <label for="commPreferencePostal">Post</label>
                     <span class="error"><?php echo $commPreferenceErr;?></span>
                 </div>
                 
                 
                 
                 <!--bericht-->
-                <h3>Bericht</h3>
-                <textarea name="message" rows="10" cols="30" placeholder="Type hier je bericht..."></textarea>
-                <span class="error"><?php echo $messageErr;?></span>
+                <div>
+                    <h3>Bericht</h3>
+                    <textarea name="message" rows="10" cols="30" placeholder="Type hier je bericht..."></textarea>
+                    <span class="error"><?php echo $messageErr;?></span>
+                </div>
                 <!--Een verstuur knop.-->
                 <input type="submit"></input>
             </form> 
@@ -233,7 +234,15 @@
             <?php } else { /*shown if form is valid*/ ?>
             <h2>Bedankt voor uw bericht</h2>
             <p>Er zal zo snel mogelijk contact worden opgenomen via onderstaande contactgegevens:</p>
-            <p></p>
+            <?php 
+            echo $email; 
+            echo $phone; 
+            echo $street; 
+            echo $housenumber; 
+            echo $housenumberAddition; 
+            echo $postal; 
+            echo $city;
+            ?>
             <?php } /*end of conditional*/?>
         </div>
         <footer>
