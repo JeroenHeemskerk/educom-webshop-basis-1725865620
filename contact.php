@@ -138,7 +138,7 @@
         
         <div class="content"><!--content-->      
             <!--contact formulier -->
-            <?php if($valid=false){?>
+            <?php if($valid=false){ /*Show only if form is not valid*/?>
             <h2>Contactformulier</h2>
             <form method="post">
                 <!--aanhef & naam -->
@@ -230,11 +230,11 @@
                 <input type="submit"></input>
             </form> 
 
-            <?php } else {?>
+            <?php } else { /*shown if form is valid*/ ?>
             <h2>Bedankt voor uw bericht</h2>
             <p>Er zal zo snel mogelijk contact worden opgenomen via onderstaande contactgegevens:</p>
             <p></p>
-            <?php}?>
+            <?php } /*end of conditional*/?>
         </div>
         <footer>
             <!--copyright reken, jaartal en auteur-->
