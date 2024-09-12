@@ -78,6 +78,9 @@
                             $streetErr = "Straatnaam is vereist";
                         } else {
                             $street = cleanString($_POST["street"]);
+                            if (!preg_match("/^[a-zA-Z-']*$/",$firstName)) {
+                                $firstNameErr = "Alleen letters en spaties zijn toegestaan";
+                            }
 
                         }
             
@@ -104,6 +107,9 @@
                             $cityErr = "Stad is vereist";
                         } else {
                             $city = cleanString($_POST["city"]);
+                            if (!preg_match("/^[a-zA-Z-']*$/",$firstName)) {
+                                $firstNameErr = "Alleen letters en spaties zijn toegestaan";
+                            }
                         }  
                         break;
                     }
