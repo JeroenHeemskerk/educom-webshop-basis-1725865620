@@ -185,20 +185,21 @@
         ?>
         <!--navigation bar-->
         <div class="navbar">
-            <ul class="navbar">
-                <li class="navbar"><a href="index.html">HOME</a></li>
-                <li class="navbar"><a href="about.html">ABOUT</a></li>
-                <li class="navbar"><a href="contact.php">CONTACT</a></li>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="contact.php">CONTACT</a></li>
             </ul>
         </div>
         
         <div class="content"><!--content-->      
             <!--contact formulier -->
             <?php if(!$valid){ /*Show only if form is not valid*/?>
+
             <h2>Contactformulier</h2>
             <form method="post">
-                <!--aanhef & naam -->
-                <h3>Naam</h3>
+
+
                 <div>
                     <label for="salutation">Aanhef</label>
                     <select id="salutation" name="salutation" value="<?php echo $salutation;?>">
@@ -219,9 +220,7 @@
                     <input type="text" id="lastName" name="lastName" value="<?php echo $lastName;?>">
                     <span class="error"><?php echo $lastNameErr;?></span>
                 </div>
-                
-                <!--contactgegevens-->
-                <h3>Contactgegevens</h3>
+
                 <!--e-mail input-->
                 <div>
                     <label for="email">E-mail adres:</label>
@@ -265,15 +264,23 @@
                     </fieldset>
                 </div>    
                 <!--communicatievoorkeur"-->
-                <p><b>Geef een communicatievoorkeur aan:</b></p>
-                <div>
-                    <input type="radio" id="commPreferenceEmail" name="commPreference" value="email">
-                    <label for="commPreferenceEmail">E-mail</label>
-                    <input type="radio" id="commPreferencePhone" name="commPreference" value="phone">
-                    <label for="commPreferencePhone">Telefoon</label>
-                    <input type="radio" id="commPreferencePost" name="commPreference" value="post">
-                    <label for="commPreferencePost">Post</label>
-                    <span class="error"><?php echo $commPreferenceErr;?></span>
+                <p><b>Geef een communicatievoorkeur aan:  </b><span class="error"><?php echo $commPreferenceErr;?></span></p>
+
+                <div  class="radiobuttons">
+                    <ul>
+                        <li>
+                            <input type="radio" id="commPreferenceEmail" name="commPreference" value="email">
+                            <label for="commPreferenceEmail">E-mail</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="commPreferencePhone" name="commPreference" value="phone">
+                            <label for="commPreferencePhone">Telefoon</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="commPreferencePost" name="commPreference" value="post">
+                            <label for="commPreferencePost">Post</label>
+                        </li>
+                    </ul>
                 </div>
                 
                 
@@ -288,15 +295,16 @@
                 <input type="submit"></input>
             </form> 
 
+
             <?php } else { /*shown if form is valid*/ ?>
             <div class="content">
                 <block>
                     <h2>Bedankt voor uw bericht</h2>    
-                    <p>Er zal zo snel mogelijk contact worden opgenomen via onderstaande contactgegevens:</p>
+                    <h3>Er zal zo snel mogelijk contact worden opgenomen via onderstaande contactgegevens:</h3>
                     <p><?php echo "Naam: " . $firstName . " " . $lastName ?></P>
                     <p><?php echo "E-mail: " . $email ?></p>
                     <p><?php echo "Telefoon: " . $phone ?></p>
-                    <p><?php echo "Adres: " . $street . " " . $housenumber, $housenumberAddition . " " . $postalcode . ", " . $city; ?> </p>
+                    <p><?php echo "Adres: " . $street . " " . $housenumber, $housenumberAddition . " " . $postalcode . " " . $city; ?> </p>
                 </block>
             </div>
             <?php } /*end of conditional*/?>

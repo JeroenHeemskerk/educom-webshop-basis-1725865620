@@ -1,4 +1,12 @@
 /* Cascade Style Sheet for this website */
+:root{
+    --regular-font: Verdana, Geneva, Tahoma, sans-serif;
+
+    --blue: #1d9ec9;
+    --white: #fff;
+    --black:#000; 
+    --orange: #C9741C;
+}
 
 * {
    font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -7,7 +15,8 @@
 }
 
 .navbar /* Navigation */{
-    background
+    position: fixed;
+    top: 0px;
 
 }
 
@@ -23,36 +32,53 @@
 
 .navbar li a {
     display: block;
-    color: white;
-    background-color: blue;
+    color: var(--white);
+    background-color: var(--blue);
     text-align: center;
     text-decoration: none;
     padding: 5px 10px;
 }
 
 .navbar li a:hover {
-    background-color: white;
-    color: black;
+    background-color: var(--white);
+    color: var(--black);
 }
 
 h1, h2 {
     min-height: 48px;
     text-align: center;
+    color: var(--blue);
 }
 
 .content /* Content */{
     width: 800px;
     font-size: 12px;
-    color:rgb(54, 53, 53);
+    color: var(--black);
+    margin-top: 50px;
 
 }
 
 .content block {
     display: block;
     width: auto;
-    background-color: blue;
-    color: white;
-    text-align: center;
+    padding: 10px;
+
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.content block p {
+    margin: 5px;
+}
+
+.content div {
+    margin: 10px;;
+}
+
+fieldset {
+    border: transparent;
+    margin: 0px;
+    padding: 0px;
 }
 
 input, textarea, select {
@@ -65,20 +91,35 @@ input[type="radio"],input[type="submit"] {
 
 label {
     display:inline-block;
-    width: 125px;
+    width: 120px;
+
+    font-weight: bold;
 }
 
 input[type="radio"]+label{
     width:auto;
+    font-weight:normal;
+}
+
+.radiobuttons ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 .error {
-    color:red;
+    color:var(--orange);
+    font-weight: bold;
 }
 
 footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;;
+    
     background-color: black;
     color: white;
     font-size: 10px;
     text-align: right;
+    
 }
