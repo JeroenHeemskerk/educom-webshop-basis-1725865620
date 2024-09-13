@@ -198,7 +198,7 @@
 
 
                 <div>
-                    <label for="salutation">Aanhef</label>
+                    <label for="salutation">Aanhef:</label>
                     <select id="salutation" name="salutation" required>
                         <option value="">Maak een keuze</option>
                         <option value="mrs" <?php if(isset($salutation) && $salutation=="mrs") echo 'selected';?> >Mevr.</option>
@@ -232,39 +232,40 @@
                     <span class="error"><?php echo $phoneErr;?></span>
                 </div>
                 <!--adres input-->
-                <div>
-                    <fieldset>
-                        <div>
-                            <label for="street">Straatnaam:</label>
-                            <input type="text" id="street" name="street" value="<?php echo $street;?>">
-                            <span class="error"><?php echo $streetErr;?></span>
-                        </div>
-                        <div>
-                            <label for="housenumber">Huisnummer:</label>
-                            <input type="text" id="housenumber" name="housenumber" value="<?php echo $housenumber;?>">
-                            <span class="error"><?php echo $housenumberErr;?></span>
-                        </div>
-                        <div>
-                            <label for="housenumberAddition">Toevoegingen:</label> 
-                            <input type="text" id="housenumberAddition" name="housenumberAddition" value="<?php echo $housenumberAddition;?>">
-                            <span class="error"><?php echo $housenumberAdditionErr;?></span>
-                        </div>
-                        <div>
-                            <label for $postalcode">Postcode:</label>
-                            <input type="text" id="postalcode" name="postalcode" value="<?php echo $postalcode;?>">
-                            <span class="error"><?php echo $postalcodeErr;?></span>
-                        </div>
-                        <div>
-                            <label for="city">Stad:</label>
-                            <input type="text" id="city" name="city" value="<?php echo $city;?>">
-                            <span class="error"><?php echo $cityErr;?></span>
-                        </div>
-                    </fieldset>
-                </div>    
+              
+                <fieldset>
+                    <div>
+                        <label for="street">Straatnaam:</label>
+                        <input type="text" id="street" name="street" value="<?php echo $street;?>">
+                        <span class="error"><?php echo $streetErr;?></span>
+                    </div>
+                    <div>
+                        <label for="housenumber">Huisnummer:</label>
+                        <input type="text" id="housenumber" name="housenumber" value="<?php echo $housenumber;?>">
+                        <span class="error"><?php echo $housenumberErr;?></span>
+                    </div>
+                    <div>
+                        <label for="housenumberAddition">Toevoegingen:</label> 
+                        <input type="text" id="housenumberAddition" name="housenumberAddition" value="<?php echo $housenumberAddition;?>">
+                        <span class="error"><?php echo $housenumberAdditionErr;?></span>
+                    </div>
+                    <div>
+                        <label for $postalcode">Postcode:</label>
+                        <input type="text" id="postalcode" name="postalcode" value="<?php echo $postalcode;?>">
+                        <span class="error"><?php echo $postalcodeErr;?></span>
+                    </div>
+                    <div>
+                        <label for="city">Stad:</label>
+                        <input type="text" id="city" name="city" value="<?php echo $city;?>">
+                        <span class="error"><?php echo $cityErr;?></span>
+                    </div>
+                </fieldset>
+                
                 <!--communicatievoorkeur"-->
-                <p><b>Geef een communicatievoorkeur aan:  </b><span class="error"><?php echo $commPreferenceErr;?></span></p>
-
+                
                 <div  class="radiobuttons">
+                    <label for="commPreference">Communicatievoorkeur: </label>
+                    <span class="error"><?php echo $commPreferenceErr;?></span>
                     <ul>
                         <li>
                             <input type="radio" id="commPreferenceEmail" name="commPreference" value="email" <?php if($commPreference=="email") echo 'checked';?> required>
@@ -281,15 +282,15 @@
                     </ul>
                 </div>
                 
-                
-                
-                <!--bericht-->
+                <!--Message input-->
                 <div>
-                    <h3>Bericht</h3>
+                    <label for="message">Bericht</label>
+                </div>
+                <div>
                     <textarea name="message" rows="10" cols="30" placeholder="Type hier je bericht..."><?php echo $message;?></textarea>
                     <span class="error"><?php echo $messageErr;?></span>
                 </div>
-                <!--Een verstuur knop.-->
+                <!--Submit button-->
                 <input type="submit"></input>
             </form> 
 

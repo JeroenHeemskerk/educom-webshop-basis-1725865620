@@ -9,12 +9,13 @@
 }
 
 * {
-   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   font-family: var(--regular-font);
    margin: auto;
    
 }
 
-.navbar /* Navigation */{
+/* Navigation */
+.navbar {
     position: fixed;
     top: 0px;
 
@@ -44,25 +45,21 @@
     color: var(--black);
 }
 
-h1, h2 {
-    min-height: 48px;
-    text-align: center;
-    color: var(--blue);
-}
+/*Content*/
 
 .content /* Content */{
     width: 800px;
     font-size: 12px;
     color: var(--black);
     margin-top: 50px;
-
+    
 }
 
 .content block {
     display: block;
     width: auto;
     padding: 10px;
-
+    
     background-color: var(--blue);
     color: var(--white);
 }
@@ -72,29 +69,52 @@ h1, h2 {
 }
 
 .content div {
-    margin: 10px;;
+    margin: 10px;
 }
 
-fieldset {
-    border: transparent;
-    margin: 0px;
-    padding: 0px;
+h1, h2 {
+    min-height: 48px;
+    text-align: center;
+    color: var(--blue);
 }
 
+/*Form*/
 input, textarea, select {
     width: 400px;
 }
 
-input[type="radio"],input[type="submit"] {
-    width:auto;
+
+input[type="radio"] {
+    width: auto;
 }
 
+/*Submit button*/
+input[type="submit"] {
+    width:auto;
+    padding: 10px;
+    border-radius: 15px;
+
+    background-color: var(--blue);
+    color: var(--white);
+    font-weight: bold;
+    
+}
+
+input[type="submit"]:hover{
+    background-color: var(--black);    
+}
+
+fieldset {
+    border-style: none;
+    margin: 0px 0px 0px -10px;
+}
+/*Labels*/
 label {
     display:inline-block;
     width: 120px;
-
     font-weight: bold;
 }
+
 
 input[type="radio"]+label{
     width:auto;
@@ -112,6 +132,8 @@ input[type="radio"]+label{
     font-weight: bold;
 }
 
+
+/*Footer*/
 footer {
     position: fixed;
     bottom: 0px;
