@@ -123,7 +123,7 @@
                 if(empty($street)) {
                     $streetErr = "Straatnaam is vereist";
                 } else {
-                    if (!preg_match("/^[a-zA-Z-']*$/",$street)) {
+                    if (!preg_match("/^[a-zA-Z]|\s*$/",$street)) {
                         $streetErr = "Alleen letters en spaties zijn toegestaan";
                     } //valideer geldige straatnaam//
                 }
@@ -132,7 +132,7 @@
                 if(empty($housenumber)) {
                     $housenumberErr = "Huisnummer is vereist";
                 } else {
-                    if(!preg_match('/^\d+[0-9]{0,6}$/', $housenumber)){
+                    if(!preg_match('/^\d{0,6}$/', $housenumber)){
                         $housenumberErr = "Alleen cijfers zijn toegestaan";
                     }
                     //valideer geldig huisnummer//
@@ -140,6 +140,9 @@
                 } 
 
                 if(!empty($housenumberAddition)) {
+                    if(!preg_match('/^\w{0,6}$/', $housenumberAddition)){
+                        $housenumberAdditionErr = "Ongeldige toevoeging";
+                    }
                     //valideer geldige tekens//
 
                 }
