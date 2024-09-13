@@ -289,12 +289,16 @@
             </form> 
 
             <?php } else { /*shown if form is valid*/ ?>
-            <h2>Bedankt voor uw bericht</h2>
-            <p>Er zal zo snel mogelijk contact worden opgenomen via onderstaande contactgegevens:</p>
-            <p><?php echo "E-maildres: " . $email; ?></p>
-            <p><?php echo "Telefoonnummer: " . $phone; ?></p>
-            <p><?php echo "Adres: " . $street; echo $housenumber; echo $housenumberAddition; echo $postalcode; echo $city;?></p>
-
+            <div class="content">
+                <block>
+                    <h2>Bedankt voor uw bericht</h2>    
+                    <p>Er zal zo snel mogelijk contact worden opgenomen via onderstaande contactgegevens:</p>
+                    <p><?php echo "Naam: " . $firstName . " " . $lastName ?></P>
+                    <p><?php echo "E-mail: " . $email ?></p>
+                    <p><?php echo "Telefoon: " . $phone ?></p>
+                    <p><?php echo "Adres: " . $street . " " . $housenumber, $housenumberAddition . " " . $postalcode . ", " . $city; ?> </p>
+                </block>
+            </div>
             <?php } /*end of conditional*/?>
         </div>
         <footer>
