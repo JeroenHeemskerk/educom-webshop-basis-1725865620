@@ -12,6 +12,8 @@
         //initiate variables to collect form input
         $salutation = $firstName = $lastName = $email = $phone = $street = $housenumber = $housenumberAddition = $postal = $city = $commPreference = $message = '';
 
+        $emailRequired = $phoneRequired = $adressRequired = '';
+
         $salutationErr = $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $streetErr = $housenumberErr = $housenumberAdditionErr = $postalErr = $cityErr = $commPreferenceErr = $messageErr = ''; //iniate variables to enter error messages
 
         $valid = false;
@@ -62,14 +64,14 @@
                     case "post":
                         $adressRequired = true;
                         break;
-                }
+                }}
             
             if(empty($_POST["email"])){
                 if($emailRequired){
-                    $emailErr = "E-mail is vereist"
+                    $emailErr = "E-mail is vereist";
                 }
             } else {
-                $email = cleanString($_POST["email]"]);
+                $email = cleanString($_POST["email"]);
                 if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
                     $emailErr = "Ongeldig e-mailadres";
                 }
@@ -105,7 +107,7 @@
                     if (!preg_match("/^[a-zA-Z-']*$/",$street)) {
                         $streetErr = "Alleen letters en spaties zijn toegestaan";
                     }
-
+                }
                 }
     
                 if(empty($_POST["housenumber"])) {
@@ -151,7 +153,7 @@
                 $valid = true;
             }
             
-        }
+        
         ?>
         <!--navigation bar-->
         <div class="navbar">
