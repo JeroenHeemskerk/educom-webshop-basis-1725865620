@@ -10,9 +10,9 @@
     <body>
         <?php
         //initiate variables to collect form input
-        $salutation = $firstName = $lastName = $email = $phone = $street = $housenumber = $housenumberAddition = $postal = $city = $commPreference = $message = '';
+        $salutation = $firstName = $lastName = $email = $phone = $street = $housenumber = $housenumberAddition = $postalcode = $city = $commPreference = $message = '';
 
-        $salutationErr = $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $streetErr = $housenumberErr = $housenumberAdditionErr = $postalErr = $cityErr = $commPreferenceErr = $messageErr = ''; //iniate variables to enter error messages
+        $salutationErr = $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $streetErr = $housenumberErr = $housenumberAdditionErr = $postalcodeErr = $cityErr = $commPreferenceErr = $messageErr = ''; //iniate variables to enter error messages
 
         $emailRequired = $phoneRequired = $adressRequired = false;
 
@@ -43,7 +43,7 @@
             $street = getPostVar('street');
             $housenumber = getPostVar('housenumber');
             $housenumberAddition = getPostVar('housenumberAddition');
-            $postal = getPostVar('postal');
+            $postalcode = getPostVar ('postalcode');
             $city = getPostVar('city');
             $message = getPostVar('message');
 
@@ -112,8 +112,8 @@
                 empty($treet) && 
                 empty($housenumber) &&
                 empty($housenumberAddition) &&
-                empty ($postal) &&
-                empty ($city))
+                empty($postalcode) &&
+                empty($city))
                 
             ){
                 $adressRequired = true;
@@ -144,9 +144,16 @@
 
                 }
 
-                if(empty($postal)) {
-                    $postalErr = "Postcode is vereist";
+                if(empty ($postalcode)) {
+                 $postalcodeErr = "Postcode is vereist";
                 } else {
+                    if(!preg_match('/^\W*[1-9]{1}[0-9]{3}\W*[a-zA-Z]{2}\W*$/', $postalcode)){
+                        $postalcodeErr = "Ongeldige postcode";
+                    } else {
+                        $cleanPostalcode = str_replace(" ", "", $postalcode);
+                        $uppercasePostalcode = strtoupper($cleanPostalcode);
+                        $postalcode = $cleanPostalcode;
+                    }
                     //valideer geldige postcode
 
                 }  
@@ -167,7 +174,7 @@
             }
             
             //validate form
-            if(empty($salutationErr)&&  empty($firstNameErr)&& empty($lastNameErr)&& empty($emailErr)&& empty($phoneErr)&& empty($streetErr)&& empty($housenumberErr)&& empty($housenumberAdditionErr)&& empty($postalErr)&& empty($cityErr)&& empty($commPreferenceErr)&& empty($messageErr)){
+            if(empty($salutationErr)&&  empty($firstNameErr)&& empty($lastNameErr)&& empty($emailErr)&& empty($phoneErr)&& empty($streetErr)&& empty($housenumberErr)&& empty($housenumberAdditionErr)&& empty ($postalcodeErr)&& empty($cityErr)&& empty($commPreferenceErr)&& empty($messageErr)){
                 $valid = true;
             }
             
@@ -243,9 +250,9 @@
                             <span class="error"><?php echo $housenumberAdditionErr;?></span>
                         </div>
                         <div>
-                            <label for="postal">Postcode:</label>
-                            <input type="text" id="postal" name="postal" value="<?php echo $postal;?>">
-                            <span class="error"><?php echo $postalErr;?></span>
+                            <label for $postalcode">Postcode:</label>
+                            <input type="text" id="postalcode" name="postalcode" value="<?php echo $postalcode;?>">
+                            <span class="error"><?php echo $postalcodeErr;?></span>
                         </div>
                         <div>
                             <label for="city">Stad:</label>
@@ -261,8 +268,8 @@
                     <label for="commPreferenceEmail">E-mail</label>
                     <input type="radio" id="commPreferencePhone" name="commPreference" value="phone">
                     <label for="commPreferencePhone">Telefoon</label>
-                    <input type="radio" id="commPreferencePostal" name="commPreference" value="postal">
-                    <label for="commPreferencePostal">Post</label>
+                    <input type="radio" id="commPreferencePost" name="commPreference" value="post">
+                    <label for="commPreferencePost">Post</label>
                     <span class="error"><?php echo $commPreferenceErr;?></span>
                 </div>
                 
@@ -283,7 +290,7 @@
             <p>Er zal zo snel mogelijk contact worden opgenomen via onderstaande contactgegevens:</p>
             <p><?php echo "E-maildres: " . $email; ?></p>
             <p><?php echo "Telefoonnummer: " . $phone; ?></p>
-            <p><?php echo "Adres: " . $street; echo $housenumber; echo $housenumberAddition; echo $postal; echo $city;?></p>
+            <p><?php echo "Adres: " . $street; echo $housenumber; echo $housenumberAddition; echo $postalcode; echo $city;?></p>
 
             <?php } /*end of conditional*/?>
         </div>
