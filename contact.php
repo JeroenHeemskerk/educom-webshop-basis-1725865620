@@ -201,10 +201,10 @@
                     <label for="salutation">Aanhef</label>
                     <select id="salutation" name="salutation" required>
                         <option value="">Maak een keuze</option>
-                        <option value="mrs">Mevr.</option>
-                        <option value="mr">Dhr.</option>
-                        <option value="mx">Mx.</option>
-                        <option value="undisclosed">Zeg ik liever niet</option>
+                        <option value="mrs" <?php if(isset($_POST["salutation"]) && $_POST["salutation"]=="mrs") echo "selected='selected'";?> >Mevr.</option>
+                        <option value="mr" <?php if(isset($_POST["salutation"]) && $_POST["salutation"]=="mr") echo "selected='selected'";?> >Dhr.</option>
+                        <option value="mx" <?php if(isset($_POST["salutation"]) && $_POST["salutation"]=="mx") echo "selected='selected'";?> >Mx.</option>
+                        <option value="undisclosed" <?php if(isset($_POST["salutation"]) && $_POST["salutation"]=="undisclosed") echo "selected='selected'";?> >Zeg ik liever niet</option>
                     </select>
                     <span class="error"><?php echo $salutationErr;?></span>
                 </div> 
@@ -267,7 +267,7 @@
                 <div  class="radiobuttons">
                     <ul>
                         <li>
-                            <input type="radio" id="commPreferenceEmail" name="commPreference" value="email">
+                            <input type="radio" id="commPreferenceEmail" name="commPreference" value="email" required>
                             <label for="commPreferenceEmail">E-mail</label>
                         </li>
                         <li>
