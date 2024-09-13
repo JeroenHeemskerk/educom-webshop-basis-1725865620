@@ -267,15 +267,15 @@
                 <div  class="radiobuttons">
                     <ul>
                         <li>
-                            <input type="radio" id="commPreferenceEmail" name="commPreference" value="email" required>
+                            <input type="radio" id="commPreferenceEmail" name="commPreference" value="email" <?php if($_POST["commPreference"]=="email") echo 'checked';?> required>
                             <label for="commPreferenceEmail">E-mail</label>
                         </li>
                         <li>
-                            <input type="radio" id="commPreferencePhone" name="commPreference" value="phone">
+                            <input type="radio" id="commPreferencePhone" name="commPreference" value="phone" <?php if($_POST["commPreference"]=="phone") echo 'checked';?>  >
                             <label for="commPreferencePhone">Telefoon</label>
                         </li>
                         <li>
-                            <input type="radio" id="commPreferencePost" name="commPreference" value="post">
+                            <input type="radio" id="commPreferencePost" name="commPreference" value="post" <?php if($_POST["commPreference"]=="post") echo 'checked';?>  >
                             <label for="commPreferencePost">Post</label>
                         </li>
                     </ul>
