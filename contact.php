@@ -201,10 +201,10 @@
                     <label for="salutation">Aanhef</label>
                     <select id="salutation" name="salutation" required>
                         <option value="">Maak een keuze</option>
-                        <option value="mrs" <?php if(isset($_POST["salutation"]) && $_POST["salutation"]=="mrs") echo "selected='selected'";?> >Mevr.</option>
-                        <option value="mr" <?php if(isset($_POST["salutation"]) && $_POST["salutation"]=="mr") echo "selected='selected'";?> >Dhr.</option>
-                        <option value="mx" <?php if(isset($_POST["salutation"]) && $_POST["salutation"]=="mx") echo "selected='selected'";?> >Mx.</option>
-                        <option value="undisclosed" <?php if(isset($_POST["salutation"]) && $_POST["salutation"]=="undisclosed") echo "selected='selected'";?> >Zeg ik liever niet</option>
+                        <option value="mrs" <?php if(isset($salutation) && $salutation=="mrs") echo 'selected';?> >Mevr.</option>
+                        <option value="mr" <?php if(isset($salutation) && $salutation=="mr") echo 'selected';?> >Dhr.</option>
+                        <option value="mx" <?php if(isset($salutation) && $salutation=="mx") echo 'selected';?> >Mx.</option>
+                        <option value="undisclosed" <?php if(isset($salutation) && $salutation=="undisclosed") echo 'selected';?> >Zeg ik liever niet</option>
                     </select>
                     <span class="error"><?php echo $salutationErr;?></span>
                 </div> 
@@ -267,15 +267,15 @@
                 <div  class="radiobuttons">
                     <ul>
                         <li>
-                            <input type="radio" id="commPreferenceEmail" name="commPreference" value="email" <?php if($_POST["commPreference"]=="email") echo 'checked';?> required>
+                            <input type="radio" id="commPreferenceEmail" name="commPreference" value="email" <?php if($commPreference=="email") echo 'checked';?> required>
                             <label for="commPreferenceEmail">E-mail</label>
                         </li>
                         <li>
-                            <input type="radio" id="commPreferencePhone" name="commPreference" value="phone" <?php if($_POST["commPreference"]=="phone") echo 'checked';?>  >
+                            <input type="radio" id="commPreferencePhone" name="commPreference" value="phone" <?php if($commPreference=="phone") echo 'checked';?>  >
                             <label for="commPreferencePhone">Telefoon</label>
                         </li>
                         <li>
-                            <input type="radio" id="commPreferencePost" name="commPreference" value="post" <?php if($_POST["commPreference"]=="post") echo 'checked';?>  >
+                            <input type="radio" id="commPreferencePost" name="commPreference" value="post" <?php if($commPreference =="post") echo 'checked';?>  >
                             <label for="commPreferencePost">Post</label>
                         </li>
                     </ul>
@@ -286,7 +286,7 @@
                 <!--bericht-->
                 <div>
                     <h3>Bericht</h3>
-                    <textarea name="message" rows="10" cols="30" placeholder="Type hier je bericht..."></textarea>
+                    <textarea name="message" rows="10" cols="30" placeholder="Type hier je bericht..."><?php if(!empty($_POST["message"])) echo $message;?></textarea>
                     <span class="error"><?php echo $messageErr;?></span>
                 </div>
                 <!--Een verstuur knop.-->
