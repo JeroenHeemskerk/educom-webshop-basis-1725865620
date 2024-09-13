@@ -11,17 +11,17 @@
 
 }
 
-ul.navbar {
+.navbar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-li.navbar {
+.navbar li {
     float: left;
 }
 
-li.navbar a {
+.navbar li a {
     display: block;
     color: white;
     background-color: blue;
@@ -30,7 +30,7 @@ li.navbar a {
     padding: 5px 10px;
 }
 
-li.navbar a:hover {
+.navbar li a:hover {
     background-color: white;
     color: black;
 }
