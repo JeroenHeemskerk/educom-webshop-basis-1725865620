@@ -52,7 +52,7 @@
             if(empty($firstName)) {
                 $firstNameErr = "Voornaam is vereist";
             } else {
-                if (!preg_match("/^[a-zA-Z-']*$/",$firstName)) {
+                if (!preg_match("/^[A-Za-zÀ-ÖØ-öø-ÿ]|\s]*$/",$firstName)) {
                    $firstNameErr = "Alleen letters en spaties zijn toegestaan";
                 }
             }
@@ -60,7 +60,7 @@
             if(empty($lastName)) {
                 $lastNameErr = "Achternaam is vereist";
             } else {
-                if (!preg_match("/^[a-zA-Z-']*$/",$lastName)) {
+                if (!preg_match("/^[A-Za-zÀ-ÖØ-öø-ÿ]|\s*$/",$lastName)) {
                     $lastNameErr = "Alleen letters en spaties zijn toegestaan";
                 }
             }
@@ -120,7 +120,7 @@
                 if(empty($street)) {
                     $streetErr = "Straatnaam is vereist";
                 } else {
-                    if (!preg_match("/^[a-zA-Z]|\s*$/",$street)) {
+                    if (!preg_match("/^[A-Za-zÀ-ÖØ-öø-ÿ]|\s*$/",$street)) {
                         $streetErr = "Alleen letters en spaties zijn toegestaan";
                     } //valideer geldige straatnaam//
                 }
@@ -161,7 +161,7 @@
                 if(empty($city)) {
                     $cityErr = "Stad is vereist";
                 } else {
-                    if (!preg_match("/^[a-zA-Z-']*$/",$city)) {
+                    if (!preg_match("/^[A-Za-zÀ-ÖØ-öø-ÿ]*$/",$city)) {
                         $cityErr = "Alleen letters en spaties zijn toegestaan";
                     } //valideer geldige stadsnaam//
                 }  
@@ -286,7 +286,7 @@
                 <!--bericht-->
                 <div>
                     <h3>Bericht</h3>
-                    <textarea name="message" rows="10" cols="30" placeholder="Type hier je bericht..."><?php if(!empty($_POST["message"])) echo $message;?></textarea>
+                    <textarea name="message" rows="10" cols="30" placeholder="Type hier je bericht..."><?php echo $message;?></textarea>
                     <span class="error"><?php echo $messageErr;?></span>
                 </div>
                 <!--Een verstuur knop.-->
