@@ -132,7 +132,7 @@
                 if(empty($housenumber)) {
                     $housenumberErr = "Huisnummer is vereist";
                 } else {
-                    if(!preg_match('/^[0-9]{10}$/', $housenumber)){
+                    if(!preg_match('/^\d+[0-9]{0,6}$/', $housenumber)){
                         $housenumberErr = "Alleen cijfers zijn toegestaan";
                     }
                     //valideer geldig huisnummer//
@@ -147,7 +147,7 @@
                 if(empty ($postalcode)) {
                  $postalcodeErr = "Postcode is vereist";
                 } else {
-                    if(!preg_match('/^\W*[1-9]{1}[0-9]{3}\W*[a-zA-Z]{2}\W*$/', $postalcode)){
+                    if(!preg_match('/^\d*[1-9]{1}[0-9]{3}\W*[a-zA-Z]{2}\W*$/', $postalcode)){
                         $postalcodeErr = "Ongeldige postcode";
                     } else {
                         $cleanPostalcode = str_replace(" ", "", $postalcode);
