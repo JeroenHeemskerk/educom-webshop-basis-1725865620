@@ -12,9 +12,9 @@
         //initiate variables to collect form input
         $salutation = $firstName = $lastName = $email = $phone = $street = $housenumber = $housenumberAddition = $postal = $city = $commPreference = $message = '';
 
-        $emailRequired = $phoneRequired = $adressRequired = false;
-
         $salutationErr = $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $streetErr = $housenumberErr = $housenumberAdditionErr = $postalErr = $cityErr = $commPreferenceErr = $messageErr = ''; //iniate variables to enter error messages
+
+        $emailRequired = $phoneRequired = $adressRequired = false;
 
         $valid = false;
         
@@ -26,28 +26,45 @@
                 $string = htmlspecialchars($string);
                 return $string;
             }
-            
-            if(empty($_POST["salutation"])) {
-                $salutationErr = "Aanhef is vereist";
-            } else {
-                $salutation = cleanString($_POST["salutation"]);
+
+            function getPostVar($key, $default=''){
+                if(isset($_POST[$key])){
+                    return cleanString($_POST[$key]);
+                }
+                return $default;
             }
+
+            $salutation = getPostVar('salutation');
+            $firstName = getPostVar('firstName');
+            $lastName = getPostVar('lastName');
+            $commPreference = getPostVar('commPreference');
+            $email = getPostVar('email');
+            $phone = getPostVar('phone');
+            $street = getPostVar('street');
+            $housenumber = getPostVar('housenumber');
+            $housenumberAddition = getPostVar('housenumberAddition');
+            $postal = getPostVar('postal');
+            $city = getPostVar('city');
+            $message = getPostVar('message');
+
             
-            if(empty($_POST["firstName"])) {
+            if(empty($salutation)) {
+                $salutationErr = "Aanhef is vereist";
+            } 
+            
+            if(empty($firstName)) {
                 $firstNameErr = "Voornaam is vereist";
             } else {
-                $firstName = cleanString($_POST["firstName"]);
                 if (!preg_match("/^[a-zA-Z-']*$/",$firstName)) {
                    $firstNameErr = "Alleen letters en spaties zijn toegestaan";
                 }
             }
 
-            if(empty($_POST["lastName"])) {
+            if(empty($lastName)) {
                 $lastNameErr = "Achternaam is vereist";
             } else {
-                $lastName = cleanString($_POST["lastName"]);
-                if (!preg_match("/^[a-zA-Z-']*$/",$firstName)) {
-                    $firstNameErr = "Alleen letters en spaties zijn toegestaan";
+                if (!preg_match("/^[a-zA-Z-']*$/",$lastName)) {
+                    $lastNameErr = "Alleen letters en spaties zijn toegestaan";
                 }
             }
             
@@ -71,26 +88,24 @@
 
             }
             
-            if(empty($_POST["email"])){
+            if(empty($email)){
                 if($emailRequired){
                     $emailErr = "E-mail is vereist";
                 }
             } else {
-                $email = cleanString($_POST["email"]);
                 if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
                     $emailErr = "Ongeldig e-mailadres";
                 }
             }
 
-            if(empty($_POST["phone"])){
+            if(empty($phone)){
                 if($phoneRequired){
                     $phoneErr = "Telefoonnummer vereist";
                 }
             } else {
-                $phone = cleanString ($_POST["phone"]);
                 if(!preg_match('/^[0-9]{10}$/', $phone)){
                     $phoneErr = "Ongeldig telefoonnummer";
-                } //TESTEN//
+                }
             }
 
             if(!(
@@ -105,53 +120,50 @@
             }
 
             if($adressRequired){
-                if(empty($_POST["street"])) {
+                if(empty($street)) {
                     $streetErr = "Straatnaam is vereist";
                 } else {
-                    $street = cleanString($_POST["street"]);
                     if (!preg_match("/^[a-zA-Z-']*$/",$street)) {
                         $streetErr = "Alleen letters en spaties zijn toegestaan";
-                    }
+                    } //valideer geldige straatnaam//
                 }
                 
     
-                if(empty($_POST["housenumber"])) {
+                if(empty($housenumber)) {
                     $housenumberErr = "Huisnummer is vereist";
                 } else {
-                    $housenumber = cleanString($_POST["housenumber"]);
+                    if(!preg_match('/^[0-9]{10}$/', $housenumber)){
+                        $housenumberErr = "Alleen cijfers zijn toegestaan";
+                    }
+                    //valideer geldig huisnummer//
 
                 } 
 
-                if(!empty($_POST["housenumberAddition"])) {
-                    $housenumberAddition = cleanString($_POST["housenumberAddition"]);
+                if(!empty($housenumberAddition)) {
+                    //valideer geldige tekens//
 
                 }
 
-                if(empty($_POST["postal"])) {
+                if(empty($postal)) {
                     $postalErr = "Postcode is vereist";
                 } else {
-                    $postal = cleanString($_POST["postal"]);
+                    //valideer geldige postcode
 
                 }  
 
-                if(empty($_POST["city"])) {
+                if(empty($city)) {
                     $cityErr = "Stad is vereist";
                 } else {
-                    $city = cleanString($_POST["city"]);
-                    if (!preg_match("/^[a-zA-Z-']*$/",$firstName)) {
-                        $firstNameErr = "Alleen letters en spaties zijn toegestaan";
-                    }
+                    if (!preg_match("/^[a-zA-Z-']*$/",$city)) {
+                        $cityErr = "Alleen letters en spaties zijn toegestaan";
+                    } //valideer geldige stadsnaam//
                 }  
             }
-        
-       
-   
-            //Validate adress complete if one or more fields are filled
 
-            if(empty($_POST["message"])) {
+            if(empty($message)) {
                 $messageErr = "Bericht is vereist";
             } else {
-                $message = cleanString($_POST["message"]);
+                //validate appropriate length
             }
             
             //validate form
