@@ -47,11 +47,8 @@
             $city = getPostVar('city');
             $message = getPostVar('message');
 
-            
-            if(empty($salutation)) {
-                $salutationErr = "Aanhef is vereist";
-            } 
-            
+            /*validate that salutation is selected */
+
             if(empty($firstName)) {
                 $firstNameErr = "Voornaam is vereist";
             } else {
@@ -202,7 +199,8 @@
 
                 <div>
                     <label for="salutation">Aanhef</label>
-                    <select id="salutation" name="salutation" value="<?php echo $salutation;?>">
+                    <select id="salutation" name="salutation" required>
+                        <option value="">Maak een keuze</option>
                         <option value="mrs">Mevr.</option>
                         <option value="mr">Dhr.</option>
                         <option value="mx">Mx.</option>
