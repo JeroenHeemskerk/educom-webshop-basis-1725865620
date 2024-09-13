@@ -12,7 +12,7 @@
         //initiate variables to collect form input
         $salutation = $firstName = $lastName = $email = $phone = $street = $housenumber = $housenumberAddition = $postal = $city = $commPreference = $message = '';
 
-        $emailRequired = $phoneRequired = $adressRequired = '';
+        $emailRequired = $phoneRequired = $adressRequired = false;
 
         $salutationErr = $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $streetErr = $housenumberErr = $housenumberAdditionErr = $postalErr = $cityErr = $commPreferenceErr = $messageErr = ''; //iniate variables to enter error messages
 
@@ -51,20 +51,25 @@
                 }
             }
             
-            if(empty($_POST["commPreference"])) {
-            $commPreferenceErr = "Selecteer een communicatievoorkeur";
-            } else {
-                switch ($commPreference) {
-                    case "email":
-                        $emailRequired = true;
-                        break;
-                    case "phone":
-                        $phoneRequired = true;
-                        break;
-                    case "post":
-                        $adressRequired = true;
-                        break;
-                }}
+         
+            switch ($commPreference) {
+                case "email":
+                    $emailRequired = true;
+                    break;
+                case "phone":
+                    $phoneRequired = true;
+                    break;
+                case "post":
+                    $adressRequired = true;
+                    break;
+                case "";
+                    $commPreferenceErr = "Selecteer een communicatievoorkeur";
+                    break;
+                default:
+                    $commPreferenceErr = "Onbekende communicatievoorkeur";
+                    break;
+
+            }
             
             if(empty($_POST["email"])){
                 if($emailRequired){
@@ -83,7 +88,7 @@
                 }
             } else {
                 $phone = cleanString ($_POST["phone"]);
-                if(!preg_match('/^[0-9]{10}=$/', $phone)){
+                if(!preg_match('/^[0-9]{10}$/', $phone)){
                     $phoneErr = "Ongeldig telefoonnummer";
                 } //TESTEN//
             }
@@ -108,7 +113,7 @@
                         $streetErr = "Alleen letters en spaties zijn toegestaan";
                     }
                 }
-                }
+                
     
                 if(empty($_POST["housenumber"])) {
                     $housenumberErr = "Huisnummer is vereist";
@@ -138,6 +143,7 @@
                     }
                 }  
             }
+        
        
    
             //Validate adress complete if one or more fields are filled
@@ -153,7 +159,7 @@
                 $valid = true;
             }
             
-        
+        }
         ?>
         <!--navigation bar-->
         <div class="navbar">
@@ -263,15 +269,10 @@
             <?php } else { /*shown if form is valid*/ ?>
             <h2>Bedankt voor uw bericht</h2>
             <p>Er zal zo snel mogelijk contact worden opgenomen via onderstaande contactgegevens:</p>
-            <?php 
-            echo $email; 
-            echo $phone; 
-            echo $street; 
-            echo $housenumber; 
-            echo $housenumberAddition; 
-            echo $postal; 
-            echo $city;
-            ?>
+            <p><?php echo "E-maildres: " . $email; ?></p>
+            <p><?php echo "Telefoonnummer: " . $phone; ?></p>
+            <p><?php echo "Adres: " . $street; echo $housenumber; echo $housenumberAddition; echo $postal; echo $city;?></p>
+
             <?php } /*end of conditional*/?>
         </div>
         <footer>
