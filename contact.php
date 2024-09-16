@@ -52,7 +52,7 @@
             if(empty($firstName)) {
                 $firstNameErr = "Voornaam is vereist";
             } else {
-                if (!preg_match("/^[A-Za-zÀ-ÖØ-öø-ÿ]|\s]*$/",$firstName)) {
+                if (!preg_match("/^[A-Za-zÀ-ÖØ-öø-ÿ\-\s]*$/",$firstName)) {
                    $firstNameErr = "Alleen letters en spaties zijn toegestaan";
                 }
             }
@@ -60,7 +60,7 @@
             if(empty($lastName)) {
                 $lastNameErr = "Achternaam is vereist";
             } else {
-                if (!preg_match("/^[A-Za-zÀ-ÖØ-öø-ÿ]|\s*$/",$lastName)) {
+                if (!preg_match("/^[A-Za-zÀ-ÖØ-öø-ÿ\-\s]*$/",$lastName)) {
                     $lastNameErr = "Alleen letters en spaties zijn toegestaan";
                 }
             }
