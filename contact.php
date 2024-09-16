@@ -194,7 +194,7 @@
             <?php if(!$valid){ /*Show only if form is not valid*/?>
 
             <h2>Contactformulier</h2>
-            <form method="post">
+            <form method="post" action="index.php?">
 
 
                 <div>
