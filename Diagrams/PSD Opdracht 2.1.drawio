@@ -242,7 +242,7 @@
                 <mxCell id="106" value="showBodySection: Contact PSD" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;" vertex="1" parent="1">
                     <mxGeometry x="402" y="476" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="107" value="showBodySection: Home PSD" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;" vertex="1" parent="1">
+                <mxCell id="107" value="showBodySection: Error PSD" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;" vertex="1" parent="1">
                     <mxGeometry x="560" y="476" width="100" height="30" as="geometry"/>
                 </mxCell>
             </root>
