@@ -250,7 +250,7 @@
                         <span class="error"><?php echo $housenumberAdditionErr;?></span>
                     </div>
                     <div>
-                        <label for $postalcode">Postcode:</label>
+                        <label for="postalcode">Postcode:</label>
                         <input type="text" id="postalcode" name="postalcode" value="<?php echo $postalcode;?>">
                         <span class="error"><?php echo $postalcodeErr;?></span>
                     </div>
@@ -291,7 +291,7 @@
                     <span class="error"><?php echo $messageErr;?></span>
                 </div>
                 <!--Submit button-->
-                <input type="submit"></input>
+                <input type="submit">
             </form> 
 
 
