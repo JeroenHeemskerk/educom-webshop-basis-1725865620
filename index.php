@@ -116,6 +116,7 @@ function showContent ($page)
             require 'home.php';
             break;
     }
+
 };
 
 function showFooter ()
