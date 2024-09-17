@@ -1,6 +1,6 @@
 <?php
 echo
 '<header>
-    Hier komt de header
+    <h1>Supercoole website header</h1>
 </header>';
 ?>

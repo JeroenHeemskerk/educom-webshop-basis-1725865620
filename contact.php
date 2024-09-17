@@ -173,6 +173,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if(!$valid){
     echo
     '<div class="content">
+    <h1>Contact</h1>
     <h2>Contactformulier</h2>
     <form method="post" action="contact.php?">
 
