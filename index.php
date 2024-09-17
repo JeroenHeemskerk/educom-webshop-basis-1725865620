@@ -6,7 +6,7 @@ showResponsePage($page);
 
 
 // FUNCTIONS
-function getRequestedPage();
+function getRequestedPage()
 {
     $request_type = $_SERVER['REQUEST_METHOD'];
     if($request_type=='POST'){
@@ -57,15 +57,15 @@ function showHeadSection()
 {
     echo '<head>
     <link rel="stylesheet" href="css/stylesheet.css">
-    <title>' . $page . ' | Educom Webshop Basis</title>
+    <title>Educom Webshop Basis</title>
     </head>';
 };
 
 function showBodySection($page)
 {
     showBodyStart();
-    showHeader($page);
     showMenu();
+    showHeader();
     showContent($page);
     showFooter();
     showBodyEnd();
@@ -81,16 +81,52 @@ function showBodyStart()
     echo '<body>';
 };
 
-function showMenu ();
+function showMenu ()
+{
+   echo 
+   '<div class="navbar">
+    <ul>
+        <li><a href="index.php?page=home">HOME</a></li>
+        <li><a href="index.php?page=about">ABOUT</a></li>
+        <li><a href="index.php?page=contact">CONTACT</a></li>
+    </ul>
+    </div>'; 
+};
 
-function showHeader ($page);
+function showHeader ()
+{
+    include 'header.php';
+};
 
-function showContent ($page);
 
-function showFooter ();
+function showContent ($page)
+{
+    switch($page)
+    {
+        case 'home':
+            require 'home.php';
+            break;
+        case 'about':
+            require 'about.php';
+            break;
+        case 'contact':
+            require 'contact.php';
+            break;
+        default:
+            require 'home.php';
+            break;
+    }
+};
+
+function showFooter ()
+{
+    include 'footer.php';
+};
 
 function showBodyEnd ()
 {
     echo '</body>';
 };
+
+
 ?>
