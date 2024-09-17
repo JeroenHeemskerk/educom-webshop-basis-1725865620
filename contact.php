@@ -172,7 +172,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if(!$valid){
     echo
-    '<h2>Contactformulier</h2>
+    '<div class="content">
+    <h2>Contactformulier</h2>
     <form method="post" action="contact.php?">
 
     <div>
@@ -271,7 +272,8 @@ if(!$valid){
                 </div> ';
                 //<!--Submit button-->
                 echo '<input type="submit">
-            </form> ';
+            </form> 
+            </div>';
 
 } else {
     echo '<div class="content">
@@ -283,6 +285,7 @@ if(!$valid){
             <p> Telefoon: ' . $phone . '</p>
             <p> Adres: ' . $street . ' ' . $housenumber . ' ' . $housenumberAddition . ' ' . $postalcode . ' ' . $city . '</p>
         </block>
-        </div> ';
+        </div> 
+    </div>';
 };
 ?>
