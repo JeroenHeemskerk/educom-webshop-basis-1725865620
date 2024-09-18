@@ -279,16 +279,14 @@ if(!$valid){
             </div>';
 
 } else {
-    echo '<div class="content">
-        <block>
-            <h2>Bedankt voor uw bericht</h2>
-            <h3> Er zal zo snel mogelijk contact worden opgenomen via onderstaande contactgegevens:</h3>
-            <p> Naam:' . $firstName . ' ' . $lastName . '</p>
-            <p> E-mail: ' . $email . '</p>
-            <p> Telefoon: ' . $phone . '</p>
-            <p> Adres: ' . $street . ' ' . $housenumber . ' ' . $housenumberAddition . ' ' . $postalcode . ' ' . $city . '</p>
-        </block>
-        </div> 
+    echo 
+    '<div class="content block">
+                <h2>Bedankt voor uw bericht</h2>
+                <h3> Er zal zo snel mogelijk contact worden opgenomen via onderstaande contactgegevens:</h3>
+                <p> Naam:' . $firstName . ' ' . $lastName . '</p>
+                <p> E-mail: ' . $email . '</p>
+                <p> Telefoon: ' . $phone . '</p>
+                <p> Adres: ' . $street . ' ' . $housenumber . ' ' . $housenumberAddition . ' ' . $postalcode . ' ' . $city . '</p>
     </div>';
 };
 ?>

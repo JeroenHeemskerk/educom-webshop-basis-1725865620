@@ -109,6 +109,10 @@ if($valid == false){
     </form>
     </div>';
 } else {
-    echo "hoi";
+    echo 
+    '<div class="content">
+        <h2>Welkom, '.$firstName.'!</h2>
+        <p>Hier komt login</p>
+    </div>';
 };
 ?>
