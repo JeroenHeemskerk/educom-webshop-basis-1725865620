@@ -175,7 +175,7 @@ if(!$valid){
     '<div class="content">
     <h1>Contact</h1>
     <h2>Contactformulier</h2>
-    <form method="post" action="contact.php?">
+    <form method="post" action="contact.php">
 
     <div>
 

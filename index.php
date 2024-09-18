@@ -16,10 +16,6 @@ function getRequestedPage()
     }
     return $requested_page;
 }
-// what is the REQUEST METHOD?
-    // if POST, get information from POST action
-    // if GET, get information from URL 
-    // store in $page variable 
 
 function getPostVar($key, $default = '')
 {
@@ -89,6 +85,7 @@ function showMenu ()
         <li><a href="index.php?page=home">HOME</a></li>
         <li><a href="index.php?page=about">ABOUT</a></li>
         <li><a href="index.php?page=contact">CONTACT</a></li>
+        <li><a href="index.php?page=register">REGISTER</a></li>
     </ul>
     </div>'; 
 };
@@ -111,6 +108,9 @@ function showContent ($page)
             break;
         case 'contact':
             require 'contact.php';
+            break;
+        case 'register':
+            require 'register.php';
             break;
         default:
             require 'home.php';
