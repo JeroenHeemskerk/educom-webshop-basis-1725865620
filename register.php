@@ -3,8 +3,6 @@ $firstName = $lastName = $email = $password = $passwordRepeat = '';
 
 $firstNameErr = $lastNameErr = $emailErr = $passwordErr = $passwordRepeatErr = '';
 
-$errorArray = array($firstNameErr, $lastNameErr, $emailErr, $passwordErr, $passwordRepeatErr);
-
 $valid =false;
 
 if($_SERVER['REQUEST_METHOD']=="POST") {
@@ -68,33 +66,43 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
         }
     }
 
-    
-    if(empty($errorArray))
-    {
-        $valid = true;
-    };
+
+   if(empty($firstNameErr)&&
+   (empty($lastNameErr))&&
+   (empty($emailErr))&&
+   (empty($passwordErr))&&
+   (empty($passwordRepeatErr))){
+    $valid = true;
+   }
 
 };
 
 
-if(!$valid)
-{
+if($valid == false){
     echo '<h2>Maak een account aan</h2>
     <div class="content">
-    <form method="post" action="index.php?page=register">
+    <form method="post" action="index.php?">
+        <input type=hidden name="page" value="register">
         <fieldset>
             <label for=firstName>Voornaam:</label>
             <input type="text" id="firstName" name="firstName" value= "' . $firstName . '"> 
+            <span class="error">'.$firstNameErr.'</span>
             <label for=lastName>Achternaam:</label>
             <input type="text" id="lastName" name="lastName" value= "' . $lastName . '">
+            <span class="error">'.$lastNameErr.'</span>
     
             <label for=email>E-mail:</label>
             <input type="email" id="email" name="email" value="' . $email . '">
+            <span class="error">'.$emailErr.'</span>
         
             <label for=password>Wachtwoord:</label>
-            <input type="password" id="password" name="password" value='.$password.'>
+            <input type="password" id="password" name="password" value="'.$password.'">
+            <span class="error">'.$passwordErr.'</span>
+
             <label for=passwordRepeat>Herhaal je wachtwoord:</label>
-            <input type="password" id="passwordRepeat" name="passwordRepeat" value='.$passwordRepeat.'>
+            <input type="password" id="passwordRepeat" name="passwordRepeat" value="'.$passwordRepeat.'">
+            <span class="error">'.$passwordRepeatErr.'</span>
+
     
             <input type="submit">
         </fieldset>

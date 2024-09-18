@@ -10,14 +10,14 @@ function getRequestedPage()
 {
     $request_type = $_SERVER['REQUEST_METHOD'];
     if($request_type=='POST'){
-        $requested_page = getPostVar('page','home');
+        $requested_page = getPageFromPost('page','home');
     } else {
-        $requested_page = getUrlVar('page', 'home');
+        $requested_page = getPageFromUrl('page', 'home');
     }
     return $requested_page;
 }
 
-function getPostVar($key, $default = '')
+function getPageFromPost($key, $default = '')
 {
     if(isset($_POST[$key])){
         return $_POST[$key];
@@ -26,7 +26,7 @@ function getPostVar($key, $default = '')
     }
 };
 
-function getUrlVar($key, $default='')
+function getPageFromUrl($key, $default='')
 {
     if(isset($_GET[$key])){
         return $_GET[$key];

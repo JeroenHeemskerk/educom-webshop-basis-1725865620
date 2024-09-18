@@ -1,5 +1,6 @@
 <?php
 //initiate variables to collect form input
+
 $salutation = $firstName = $lastName = $email = $phone = $street = $housenumber = $housenumberAddition = $postalcode = $city = $commPreference = $message = '';
 
 $salutationErr = $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $streetErr = $housenumberErr = $housenumberAdditionErr = $postalcodeErr = $cityErr = $commPreferenceErr = $messageErr = ''; //iniate variables to enter error messages
@@ -175,7 +176,8 @@ if(!$valid){
     '<div class="content">
     <h1>Contact</h1>
     <h2>Contactformulier</h2>
-    <form method="post" action="contact.php">
+    <form method="post" action="index.php?">
+    <input type=hidden name="page" value="contact">
 
     <div>
 
