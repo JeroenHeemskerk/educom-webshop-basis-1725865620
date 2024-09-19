@@ -1,11 +1,13 @@
 <?php
 
-$email = 'appel@gmail.com';
-$userName = 'appel';
-$password = 'appel';
-
-$userArray = array();
-array_push($userArray, $email, $userName, $password, PHP_EOL);
+function createUserArray($firstName, $lastName, $email, $password):array
+{
+    $combineNames = array($firstName, $lastName);
+    $userName = implode(' ',$combineNames);
+    $userArray = array();
+    array_push($userArray, $email, $userName, $password, PHP_EOL);
+    return $userArray;
+}
 
 function getUser(string $email): ?array
 {
@@ -38,12 +40,6 @@ function saveUser(array $userArray): void{
     fclose($userData);
 }
 
-if(userExists($email)){
-    echo 'Er is al een account met dit e-mailadres';
-} else { 
-    saveUser($userArray);
-}
-
 function transformRecordToArray(string $userRecord): array
 {
     $newArray = explode('|', $userRecord);
@@ -55,8 +51,5 @@ function transformArrayToRecord(array $userArray): string
     $newRecord = implode('|', $userArray);
     return $newRecord;
 }
-
-
-
 
 ?>

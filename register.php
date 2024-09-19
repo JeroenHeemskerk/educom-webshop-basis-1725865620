@@ -1,7 +1,9 @@
 <?php
 $firstName = $lastName = $email = $password = $passwordRepeat = '';
 
-$firstNameErr = $lastNameErr = $emailErr = $passwordErr = $passwordRepeatErr = '';
+$fullName = '';
+
+$firstNameErr = $lastNameErr = $emailErr = $emailExistsErr = $passwordErr = $passwordRepeatErr = '';
 
 $valid =false;
 
@@ -66,15 +68,28 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
         }
     }
 
+    require 'test.php';
+    echo 'kroket';
+  
+    $userInput = createUserArray($firstName, $lastName, $email, $password);
+
+    if(userExists($email)){
+        $emailExistsErr = "Er bestaat al een account met dit e-mailadres";
+    } else { 
+        saveUser($userInput);
+        $test = "Het is gelukt";
+    }
+    echo 'frikandel';
+
 
    if(empty($firstNameErr)&&
    (empty($lastNameErr))&&
    (empty($emailErr))&&
+   (empty($emailExistsErr))&&
    (empty($passwordErr))&&
    (empty($passwordRepeatErr))){
     $valid = true;
    }
-
 };
 
 
@@ -94,6 +109,7 @@ if($valid == false){
             <label for=email>E-mail:</label>
             <input type="email" id="email" name="email" value="' . $email . '">
             <span class="error">'.$emailErr.'</span>
+            <span class="error">'.$emailExistsErr.'</span>
         
             <label for=password>Wachtwoord:</label>
             <input type="password" id="password" name="password" value="'.$password.'">
@@ -113,6 +129,7 @@ if($valid == false){
     '<div class="content">
         <h2>Welkom, '.$firstName.'!</h2>
         <p>Hier komt login</p>
+        <p>'.$test.'</p>
     </div>';
 };
 ?>
