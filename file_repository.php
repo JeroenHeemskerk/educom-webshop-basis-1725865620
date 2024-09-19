@@ -1,14 +1,5 @@
 <?php
 
-function createUserArray($firstName, $lastName, $email, $password):array
-{
-    $combineNames = array($firstName, $lastName);
-    $userName = implode(' ',$combineNames);
-    $userArray = array();
-    array_push($userArray, $email, $userName, $password, PHP_EOL);
-    return $userArray;
-}
-
 function getUser(string $email): ?array
 {
     $userData = fopen("users/users.txt", "r");
@@ -22,15 +13,6 @@ function getUser(string $email): ?array
     return $foundUser;
     
     fclose($userData);
-}
-
-function userExists(string $email): bool
-{
-    if (empty(getUser($email))) {
-        return false;
-    }
-    
-    return true;
 }
 
 function saveUser(array $userArray): void{

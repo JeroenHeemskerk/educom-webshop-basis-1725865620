@@ -7,3 +7,6 @@ banaan@gmail.com|banaan|banaan|
 appel@gmail.com|appel|appel|
 lonneolmeyer@gmail.com|Array|hoi|
 lonneolmeyer1@gmail.com|Lonne Olmeyer|hoi|
+jannes@gmail.com|pieter jannes|welkom!|
+testje@gmail.com|testen of email klein wordt|jij|
+groteletters@gmail.com|Kleine Letters|hoi|

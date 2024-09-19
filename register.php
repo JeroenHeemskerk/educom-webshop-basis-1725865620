@@ -68,7 +68,7 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
         }
     }
 
-    require 'test.php';
+    require 'user_service.php';
     echo 'kroket';
   
     $userInput = createUserArray($firstName, $lastName, $email, $password);
