@@ -59,7 +59,7 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
     }
 
     if (empty($passwordRepeat)){
-        $passwordRepeat = "Herhaal het gekozen wachtwoord";
+        $passwordRepeatErr = "Herhaal het gekozen wachtwoord";
     }
 
     if(!empty($password&&$passwordRepeat)){
@@ -67,29 +67,24 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
             $passwordRepeatErr = "Herhaald wachtwoord komt niet overeen";
         }
     }
+    
+    if(empty($firstNameErr)&&(empty($lastNameErr))&&(empty($emailErr))&&(empty($passwordErr))&&(empty($passwordRepeatErr)))
+    {
+       require 'user_service.php';
+       $userInput = createUserArray($firstName, $lastName, $email, $password);
+       if(userExists($email)){
+           $emailExistsErr = "Er bestaat al een account met dit e-mailadres";
+       } else { 
+           saveUser($userInput);
+       }
 
-    require 'user_service.php';
-    echo 'kroket';
-  
-    $userInput = createUserArray($firstName, $lastName, $email, $password);
-
-    if(userExists($email)){
-        $emailExistsErr = "Er bestaat al een account met dit e-mailadres";
-    } else { 
-        saveUser($userInput);
-        $test = "Het is gelukt";
-    }
-    echo 'frikandel';
-
-
-   if(empty($firstNameErr)&&
-   (empty($lastNameErr))&&
-   (empty($emailErr))&&
-   (empty($emailExistsErr))&&
-   (empty($passwordErr))&&
-   (empty($passwordRepeatErr))){
-    $valid = true;
+       if(empty($firstNameErr)&&(empty($lastNameErr))&&(empty($emailErr))&&(empty($emailExistsErr))&&(empty($passwordErr))&&(empty($passwordRepeatErr)))
+       {
+       $valid = true;
+       }
    }
+
+
 };
 
 
@@ -99,28 +94,35 @@ if($valid == false){
     <form method="post" action="index.php?">
         <input type=hidden name="page" value="register">
         <fieldset>
+        <div>
             <label for=firstName>Voornaam:</label>
             <input type="text" id="firstName" name="firstName" value= "' . $firstName . '"> 
             <span class="error">'.$firstNameErr.'</span>
+        </div>
+        <div>
             <label for=lastName>Achternaam:</label>
             <input type="text" id="lastName" name="lastName" value= "' . $lastName . '">
             <span class="error">'.$lastNameErr.'</span>
-    
+        </div>
+        <div>
             <label for=email>E-mail:</label>
             <input type="email" id="email" name="email" value="' . $email . '">
             <span class="error">'.$emailErr.'</span>
             <span class="error">'.$emailExistsErr.'</span>
-        
+        </div>
+        <div>
             <label for=password>Wachtwoord:</label>
             <input type="password" id="password" name="password" value="'.$password.'">
             <span class="error">'.$passwordErr.'</span>
-
+        </div>
+        <div>
             <label for=passwordRepeat>Herhaal je wachtwoord:</label>
             <input type="password" id="passwordRepeat" name="passwordRepeat" value="'.$passwordRepeat.'">
             <span class="error">'.$passwordRepeatErr.'</span>
-
-    
+        </div>
+        <div>
             <input type="submit">
+        </div>
         </fieldset>
     </form>
     </div>';

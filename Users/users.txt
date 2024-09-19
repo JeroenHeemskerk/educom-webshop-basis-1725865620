@@ -10,3 +10,4 @@ lonneolmeyer1@gmail.com|Lonne Olmeyer|hoi|
 jannes@gmail.com|pieter jannes|welkom!|
 testje@gmail.com|testen of email klein wordt|jij|
 groteletters@gmail.com|Kleine Letters|hoi|
+mial@mail.com|Hoi Test|ok|

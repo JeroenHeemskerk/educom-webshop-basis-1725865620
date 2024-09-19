@@ -6,7 +6,6 @@ function getUser(string $email): ?array
     while (!feof($userData)){
         if(str_contains(fgets($userData), $email)){
             $foundUser = transformRecordToArray(fgets($userData));
-            echo 'user found';
             return $foundUser;
         }}
     $foundUser = null;

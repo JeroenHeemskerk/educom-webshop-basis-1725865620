@@ -93,8 +93,8 @@ input[type="radio"] {
 input[type="submit"] {
     width:auto;
     padding: 10px;
+    margin: 10px;
     border-radius: 15px;
-
     background-color: var(--blue);
     color: var(--white);
     font-weight: bold;
