@@ -19,3 +19,19 @@ function createUserArray($firstName, $lastName, $email, $password):array
     $userArray= [$formattedEmail, $formattedName, $password, PHP_EOL];
     return $userArray;
 }
+
+function authenticateUser (string $email, string $password):bool
+{   
+    if(userExists($email)){
+        if(!array_search($password, getUser($email))){
+            return false;
+        } else 
+        {
+            return true;
+        }
+    } else {
+        return false;
+    }
+
+    }
+

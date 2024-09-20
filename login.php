@@ -21,6 +21,8 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
     }
 
 
+
+
     $email = getPostVar('email');
     $password = getPostVar('password');
 
@@ -36,21 +38,19 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
         $passwordErr = "Vul een wachtwoord in";
     }
 
-    if(!empty($email&&$password)){
+    if(!empty($email&&$password)&&(userExists($email))){
         require 'user_service.php';
-        if(userExists($email)){
-            $foundUser = getUser($email);
-            if(array_search($password, $foundUser)){
-                $valid = true;
-            } else {
-                $passwordErr = "Wachtwoord onjuist";
-            }
+        if (authenticateUser($email, $password)) {
+            require 'session_manager.php';
         } else {
+            $passwordErr = "Wachtwoord onjuist";
+        }
+    } else {
             $emailErr = "Er is geen account met dit e-mailadres geregistreerd";
             echo "Link naar register pagina";
         }
-    }
 
+    //$valid = true;
 };
 
 
