@@ -86,6 +86,7 @@ function showMenu ()
         <li><a href="index.php?page=about">ABOUT</a></li>
         <li><a href="index.php?page=contact">CONTACT</a></li>
         <li><a href="index.php?page=register">REGISTER</a></li>
+        <li><a href="index.php?page=login">LOGIN</a></li>
     </ul>
     </div>'; 
 };
@@ -111,6 +112,9 @@ function showContent ($page)
             break;
         case 'register':
             require 'register.php';
+            break;
+        case 'login';
+            require 'login.php';
             break;
         default:
             require 'home.php';
