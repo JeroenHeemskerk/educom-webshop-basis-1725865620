@@ -128,6 +128,3 @@ function showBodyEnd ()
 {
     echo '</body>';
 };
-
-
-?>

@@ -134,4 +134,3 @@ if($valid == false){
         <p>'.$test.'</p>
     </div>';
 };
-?>

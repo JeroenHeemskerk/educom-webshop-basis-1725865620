@@ -32,5 +32,3 @@ function transformArrayToRecord(array $userArray): string
     $newRecord = implode('|', $userArray);
     return $newRecord;
 }
-
-?>

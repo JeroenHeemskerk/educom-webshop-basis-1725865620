@@ -289,4 +289,3 @@ if(!$valid){
                 <p> Adres: ' . $street . ' ' . $housenumber . ' ' . $housenumberAddition . ' ' . $postalcode . ' ' . $city . '</p>
     </div>';
 };
-?>

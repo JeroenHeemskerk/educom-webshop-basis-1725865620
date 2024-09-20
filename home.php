@@ -5,4 +5,3 @@ echo
         <h2>Welkom</h2>
         <p>Welkom op de website</p>
 </div>';
-?>

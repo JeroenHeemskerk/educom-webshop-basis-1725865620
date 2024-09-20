@@ -21,4 +21,3 @@ echo
         <p>Wie weet hoort daar binnenkort ook coderen bij :)</p>
     </div>
 </div>';
-?>

@@ -19,5 +19,3 @@ function createUserArray($firstName, $lastName, $email, $password):array
     $userArray= [$formattedEmail, $formattedName, $password, PHP_EOL];
     return $userArray;
 }
-  
-?>
