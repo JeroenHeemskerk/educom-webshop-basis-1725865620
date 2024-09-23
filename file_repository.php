@@ -1,8 +1,9 @@
 <?php
+define('USER_FILE_NAME', "users/users.txt");
 
 function getUser(string $email): ?array
 {
-    $userData = fopen("users/users.txt", "r");
+    $userData = fopen(USER_FILE_NAME, "r");
     try {
 
         while (!feof($userData)){
@@ -24,7 +25,7 @@ function getUser(string $email): ?array
 function saveUser(array $userArray): void
 {
     $newUser = transformArrayToRecord($userArray);
-    $userData = fopen("users/users.txt", "a");
+    $userData = fopen(USER_FILE_NAME, "a");
     try {
         fwrite($userData, $newUser);
     }
