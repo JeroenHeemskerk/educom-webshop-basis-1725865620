@@ -1,10 +1,22 @@
 <?php
 
+function showContactPage ()
+{
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $data = validateContactForm();
+        if($data['valid'] == true){
+            showContactThanks ($data);
+        } 
+        showContactForm ($data);
+        
+    }
+}
+
 function validateContactForm ()
 {
     $salutation = $firstName = $lastName = $email = $phone = $street = $housenumber = $housenumberAddition = $postalcode = $city = $commPreference = $message = '';
     
-    $salutationErr = $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $streetErr = $housenumberErr = $housenumberAdditionErr = $postalcodeErr = $cityErr = $commPreferenceErr = $messageErr = ''; //iniate variables to enter error messages
+    $salutationErr = $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $streetErr = $housenumberErr = $housenumberAdditionErr = $postalcodeErr = $cityErr = $commPreferenceErr = $messageErr = ''; 
     
     $emailRequired = $phoneRequired = $adressRequired = false;
     
@@ -37,7 +49,9 @@ function validateContactForm ()
     $city = getPostVar('city');
     $message = getPostVar('message');
 
-    /*validate that salutation is selected */
+    if (empty($salutation)) {
+        $salutationErr = "Maak een keuze";
+    }
 
     if(empty($firstName)) {
         $firstNameErr = "Voornaam is vereist";
@@ -168,10 +182,37 @@ function validateContactForm ()
         $valid = true;
     }
 
+    return array(
+        'salutation' => $salutation,
+        'firstName' => $firstName,
+        'lastName' => $lastName,
+        'email' => $email,
+        'phone' => $phone,
+        'street' => $street,
+        'housenumber' => $housenumber,
+        'housenumberAddition' => $housenumberAddition,
+        'postalcode' => $postalcode,
+        'city' => $city,
+        'commPreference' => $commPreference,
+        'message' => $message,
+        'salutationErr' => $salutationErr,
+        'firstNameErr' => $firstNameErr,
+        'lastNameErr' => $lastNameErr,
+        'emailErr' => $emailErr,
+        'phoneErr' => $phoneErr,
+        'streetErr' => $streetErr,
+        'housenumberErr' => $housenumberErr,
+        'housenumberAdditionErr' => $housenumberAdditionErr,
+        'postalcodeErr' => $postalcodeErr,
+        'cityErr' => $cityErr,
+        'commPreferenceErr' => $commPreferenceErr,
+        'messageErr' => $messageErr,
+        'valid' => $valid);
 }
 
-function showContactForm ();
+function showContactForm ($data)
 {
+    echo 'kroket';
     echo
     '<div class="content">
     <h1>Contact</h1>
@@ -279,7 +320,7 @@ function showContactForm ();
             </div>';
 }
 
-function showContactThanks ();
+function showContactThanks ($data)
 {
     echo 
     '<div class="content block">
@@ -290,18 +331,4 @@ function showContactThanks ();
                 <p> Telefoon: ' . $phone . '</p>
                 <p> Adres: ' . $street . ' ' . $housenumber . ' ' . $housenumberAddition . ' ' . $postalcode . ' ' . $city . '</p>
     </div>';
-}
-
-function showContactPage ()
-{
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        validateContactForm();
-        if(!$valid){
-            showContactForm ();
-        } else {
-            showContactThanks ();
-        }
-    } else {
-        showContactForm ();
-    }
 }
