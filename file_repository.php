@@ -4,15 +4,18 @@ function getUser(string $email): ?array
 {
     $userData = fopen("users/users.txt", "r");
     while (!feof($userData)){
-        if(str_contains(fgets($userData), $email)){
-            $foundUser = transformRecordToArray(fgets($userData));
+        $line = fgets($userData);
+        $parts = explode ('|', $line);
+        if($parts[0] == $email) {
+            $foundUser = array('email' => $parts[0], 'name' => $parts[1], 'password' => $parts[2]);
             return $foundUser;
-        }}
-    $foundUser = null;
-    return $foundUser;
-    
-    fclose($userData);
-}
+        }
+        $foundUser = null;
+        return $foundUser;
+        }
+        fclose($userData);
+    }
+
 
 function saveUser(array $userArray): void{
     $newUser = transformArrayToRecord($userArray);
