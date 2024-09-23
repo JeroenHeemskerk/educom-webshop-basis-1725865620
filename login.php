@@ -1,10 +1,25 @@
 <?php
-$email = $password = '';
-$emailErr = $passwordErr = '';
-$valid =false;
 
-if($_SERVER['REQUEST_METHOD']=="POST") {
-    
+function showLoginPage ()
+{
+    if($_SERVER['REQUEST_METHOD']=="POST") {
+        validateLogin();
+        if(!$valid) {
+            showLoginForm();
+        } else {
+            doLoginUser();
+        }
+    } else {
+        showLoginForm ();
+    }
+}
+
+function validateLogin ()
+{
+    $email = $password = '';
+    $emailErr = $passwordErr = '';
+    $valid =false;
+
     function cleanString($string){
         $string = trim($string);
         $string = stripslashes($string);
@@ -20,9 +35,6 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
         }
     }
 
-
-
-
     $email = getPostVar('email');
     $password = getPostVar('password');
 
@@ -33,7 +45,7 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
             $emailErr = "Ongeldig e-mailadres";
         }
     }
-   
+
     if (empty($password)){
         $passwordErr = "Vul een wachtwoord in";
     }
@@ -49,12 +61,10 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
             $emailErr = "Er is geen account met dit e-mailadres geregistreerd";
             echo "Link naar register pagina";
         }
+}
 
-    //$valid = true;
-};
-
-
-if($valid == false){
+function showLoginForm ()
+{
     echo '<h2>Login</h2>
     <div class="content">
     <form method="post" action="index.php?">
@@ -80,10 +90,14 @@ if($valid == false){
         </fieldset>
     </form>
     </div>';
-} else {
+}
+
+function doLoginUser ()
+{
     echo 
     '<div class="content">
         <h2>Welkom terug, [naam uit login sessie]!</h2>
         <p>Hier komt een bevestiging</p>
     </div>';
-};
+    //start session
+}
