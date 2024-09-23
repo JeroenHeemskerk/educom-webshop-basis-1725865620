@@ -61,8 +61,10 @@ function showBodySection($page)
 {
     showBodyStart();
     showMenu();
+    include 'header.php';
     showHeader();
     showContent($page);
+    include 'footer.php';
     showFooter();
     showBodyEnd();
 };
@@ -91,41 +93,35 @@ function showMenu ()
     </div>'; 
 };
 
-function showHeader ()
-{
-    include 'header.php';
-};
-
-
 function showContent ($page)
 {
     switch($page)
     {
         case 'home':
             require 'home.php';
+            showHomePage();
             break;
         case 'about':
             require 'about.php';
+            showAboutPage ();
             break;
         case 'contact':
             require 'contact.php';
+            showContactPage();
             break;
         case 'register':
             require 'register.php';
+            showRegisterPage();
             break;
         case 'login';
             require 'login.php';
+            showLoginPage();
             break;
         default:
             require 'home.php';
             break;
     }
 
-};
-
-function showFooter ()
-{
-    include 'footer.php';
 };
 
 function showBodyEnd ()

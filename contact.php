@@ -1,16 +1,29 @@
 <?php
-//initiate variables to collect form input
 
-$salutation = $firstName = $lastName = $email = $phone = $street = $housenumber = $housenumberAddition = $postalcode = $city = $commPreference = $message = '';
+function showContactPage ()
+{
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        validateContactForm();
+        if(!$valid){
+            showContactForm ();
+        } else {
+            showContactThanks ();
+        }
+    } else {
+        showContactForm ();
+    }
+}
 
-$salutationErr = $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $streetErr = $housenumberErr = $housenumberAdditionErr = $postalcodeErr = $cityErr = $commPreferenceErr = $messageErr = ''; //iniate variables to enter error messages
-
-$emailRequired = $phoneRequired = $adressRequired = false;
-
-$valid = false;
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+function validateContactForm ()
+{
+    $salutation = $firstName = $lastName = $email = $phone = $street = $housenumber = $housenumberAddition = $postalcode = $city = $commPreference = $message = '';
     
+    $salutationErr = $firstNameErr = $lastNameErr = $emailErr = $phoneErr = $streetErr = $housenumberErr = $housenumberAdditionErr = $postalcodeErr = $cityErr = $commPreferenceErr = $messageErr = ''; //iniate variables to enter error messages
+    
+    $emailRequired = $phoneRequired = $adressRequired = false;
+    
+    $valid = false;
+
     function cleanString($string) {
         $string = trim($string);
         $string = stripslashes($string);
@@ -168,10 +181,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(empty($salutationErr)&&  empty($firstNameErr)&& empty($lastNameErr)&& empty($emailErr)&& empty($phoneErr)&& empty($streetErr)&& empty($housenumberErr)&& empty($housenumberAdditionErr)&& empty ($postalcodeErr)&& empty($cityErr)&& empty($commPreferenceErr)&& empty($messageErr)){
         $valid = true;
     }
-    
+
 }
 
-if(!$valid){
+function showContactForm ();
+{
     echo
     '<div class="content">
     <h1>Contact</h1>
@@ -277,8 +291,10 @@ if(!$valid){
                 echo '<input type="submit">
             </form> 
             </div>';
+}
 
-} else {
+function showContactThanks ();
+{
     echo 
     '<div class="content block">
                 <h2>Bedankt voor uw bericht</h2>
@@ -288,4 +304,5 @@ if(!$valid){
                 <p> Telefoon: ' . $phone . '</p>
                 <p> Adres: ' . $street . ' ' . $housenumber . ' ' . $housenumberAddition . ' ' . $postalcode . ' ' . $city . '</p>
     </div>';
-};
+}
+
