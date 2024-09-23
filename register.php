@@ -1,14 +1,15 @@
 <?php
-$firstName = $lastName = $email = $password = $passwordRepeat = '';
 
-$fullName = '';
+function validateRegisterForm ()
+{
+    $firstName = $lastName = $email = $password = $passwordRepeat = '';
 
-$firstNameErr = $lastNameErr = $emailErr = $emailExistsErr = $passwordErr = $passwordRepeatErr = '';
+    $fullName = '';
 
-$valid =false;
+    $firstNameErr = $lastNameErr = $emailErr = $emailExistsErr = $passwordErr = $passwordRepeatErr = '';
 
-if($_SERVER['REQUEST_METHOD']=="POST") {
-    
+    $valid =false;
+
     function cleanString($string){
         $string = trim($string);
         $string = stripslashes($string);
@@ -82,13 +83,11 @@ if($_SERVER['REQUEST_METHOD']=="POST") {
        {
        $valid = true;
        }
-   }
+    }
+}
 
-
-};
-
-
-if($valid == false){
+function showRegisterForm ()
+{
     echo '<h2>Maak een account aan</h2>
     <div class="content">
     <form method="post" action="index.php?">
@@ -126,11 +125,27 @@ if($valid == false){
         </fieldset>
     </form>
     </div>';
-} else {
+}
+
+function showLoginPage ()
+{
     echo 
     '<div class="content">
         <h2>Welkom, '.$firstName.'!</h2>
         <p>Hier komt login</p>
         <p>'.$test.'</p>
     </div>';
-};
+}
+
+function showRegisterPage ()
+{
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+        validateRegisterForm();
+        if(!$valid) {
+            showContactForm();
+        } else {
+            require 'login.php';
+            showLoginPage ();
+        }
+    } else showRegisterForm();
+}

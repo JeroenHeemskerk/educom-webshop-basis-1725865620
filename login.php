@@ -1,20 +1,5 @@
 <?php
-
-function showLoginPage ()
-{
-    if($_SERVER['REQUEST_METHOD']=="POST") {
-        validateLogin();
-        if(!$valid) {
-            showLoginForm();
-        } else {
-            doLoginUser();
-        }
-    } else {
-        showLoginForm ();
-    }
-}
-
-function validateLogin ()
+function validateLoginForm ()
 {
     $email = $password = '';
     $emailErr = $passwordErr = '';
@@ -100,4 +85,18 @@ function doLoginUser ()
         <p>Hier komt een bevestiging</p>
     </div>';
     //start session
+}
+
+function showLoginPage ()
+{
+    if($_SERVER['REQUEST_METHOD']=="POST") {
+        validateLoginForm();
+        if(!$valid) {
+            showLoginForm();
+        } else {
+            doLoginUser();
+        }
+    } else {
+        showLoginForm ();
+    }
 }

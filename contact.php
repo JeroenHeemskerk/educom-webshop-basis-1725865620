@@ -1,19 +1,5 @@
 <?php
 
-function showContactPage ()
-{
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        validateContactForm();
-        if(!$valid){
-            showContactForm ();
-        } else {
-            showContactThanks ();
-        }
-    } else {
-        showContactForm ();
-    }
-}
-
 function validateContactForm ()
 {
     $salutation = $firstName = $lastName = $email = $phone = $street = $housenumber = $housenumberAddition = $postalcode = $city = $commPreference = $message = '';
@@ -306,3 +292,16 @@ function showContactThanks ();
     </div>';
 }
 
+function showContactPage ()
+{
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        validateContactForm();
+        if(!$valid){
+            showContactForm ();
+        } else {
+            showContactThanks ();
+        }
+    } else {
+        showContactForm ();
+    }
+}
