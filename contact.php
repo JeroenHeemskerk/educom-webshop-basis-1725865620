@@ -3,12 +3,17 @@
 function showContactPage ()
 {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        echo 'kroket';
         $data = validateContactForm();
+        echo 'kroket';
         if($data['valid'] == true){
             showContactThanks ($data);
         } 
         showContactForm ($data);
         
+    } else {
+        $data = '';
+        showContactForm($data);
     }
 }
 
@@ -156,7 +161,7 @@ function validateContactForm ()
             } else {
                 $cleanPostalcode = str_replace(" ", "", $postalcode);
                 $uppercasePostalcode = strtoupper($cleanPostalcode);
-                $postalcode = $cleanPostalcode;
+                $postalcode = $uppercasePostalcode;
             }
             //valideer geldige postcode
 
@@ -182,7 +187,7 @@ function validateContactForm ()
         $valid = true;
     }
 
-    return array(
+    $data = array(
         'salutation' => $salutation,
         'firstName' => $firstName,
         'lastName' => $lastName,
@@ -208,6 +213,8 @@ function validateContactForm ()
         'commPreferenceErr' => $commPreferenceErr,
         'messageErr' => $messageErr,
         'valid' => $valid);
+    
+        return $data;
 }
 
 function showContactForm ($data)
@@ -230,58 +237,58 @@ function showContactForm ($data)
             <option value="mx" '; if(isset($salutation) && $salutation=="mx") echo 'selected'; echo '>Mx.</option>
             <option value="undisclosed" '; if(isset($salutation) && $salutation=="undisclosed") echo 'selected'; echo '>Zeg ik liever niet</option>
         </select>';
-                    echo '<span class="error">' . $salutationErr . '</span>
+                    echo '<span class="error">'; echo $data['salutationErr'] ?? ''; echo '</span>
                 </div> 
                 <div>     
                     <label for="firstName">Voornaam:</label>
-                    <input type="text" id="firstName" name="firstName" value=" ' . $firstName . '">
-                    <span class="error">' . $firstNameErr . '</span>
+                    <input type="text" id="firstName" name="firstName" value="'; echo $data['firstName']??''; echo '">
+                    <span class="error">'; echo $data['firstNameErr']??''; echo '</span>
                 </div>
                 <div>
                     <label for="lastName">Achternaam:</label>
-                    <input type="text" id="lastName" name="lastName" value=" ' .  $lastName . ' ">
-                    <span class="error"> ' . $lastNameErr . ' </span>
+                    <input type="text" id="lastName" name="lastName" value=" '; echo $data['lastName']??''; echo ' ">
+                    <span class="error"> '; echo $data['lastNameErr']??''; echo ' </span>
                 </div> ';
 
                 //<!--e-mail input-->
                 echo '<div>
                     <label for="email">E-mail adres:</label>
-                    <input type="email" id="email" name="email" value=" ' . $email . ' ">
-                    <span class="error"> ' . $emailErr . ' </span>
+                    <input type="email" id="email" name="email" value=" '; echo $data['email']??''; echo ' ">
+                    <span class="error"> ' ; echo $data['emailErr']??''; echo  ' </span>
                 </div> ';
                 //<!--telefoon input-->
                 echo '<div>
                     <label for="phone">Telefoonnummer:</label>
-                    <input type="tel" id="phone" name="phone" value=" ' . $phone . ' ">
-                    <span class="error"> ' . $phoneErr . ' </span>
+                    <input type="tel" id="phone" name="phone" value=" '; echo $data['phone']??''; echo ' ">
+                    <span class="error"> ' ; echo $data['phoneErr']??''; echo ' </span>
                 </div> ';
                 
                 //<!--adres input-->
                 echo '<fieldset>
                     <div>
                         <label for="street">Straatnaam:</label>
-                        <input type="text" id="street" name="street" value=" ' . $street . ' ">
-                        <span class="error"> ' . $streetErr . '</span>
+                        <input type="text" id="street" name="street" value=" '; echo $data['street']??''; echo ' ">
+                        <span class="error"> '; echo $data['streetErr']??''; echo '</span>
                     </div>
                     <div>
                         <label for="housenumber">Huisnummer:</label>
-                        <input type="text" id="housenumber" name="housenumber" value=" ' . $housenumber . ' ">
-                        <span class="error"> ' .  $housenumberErr . ' </span>
+                        <input type="text" id="housenumber" name="housenumber" value=" '; echo $data['housenumber']??''; echo ' ">
+                        <span class="error"> '; echo $data['housenumberErr']??''; echo ' </span>
                     </div>
                     <div>
                         <label for="housenumberAddition">Toevoegingen:</label> 
-                        <input type="text" id="housenumberAddition" name="housenumberAddition" value=" ' . $housenumberAddition . ' ">
-                        <span class="error"> ' . $housenumberAdditionErr . ' </span>
+                        <input type="text" id="housenumberAddition" name="housenumberAddition" value=" '; echo $data['housenumberAddition']??''; echo ' ">
+                        <span class="error"> '; echo $data['housenumberAdditionErr']??''; echo ' </span>
                     </div>
                     <div>
                         <label for="postalcode">Postcode:</label>
-                        <input type="text" id="postalcode" name="postalcode" value=" ' . $postalcode . ' ">
-                        <span class="error"> ' . $postalcodeErr . ' </span>
+                        <input type="text" id="postalcode" name="postalcode" value=" ' ; echo $data['podstalcode']??''; echo ' ">
+                        <span class="error"> '; echo $data['postalcodeErr']??''; echo ' </span>
                     </div>
                     <div>
                         <label for="city">Stad:</label>
-                        <input type="text" id="city" name="city" value=" ' . $city . ' ">
-                        <span class="error"> ' . $cityErr . ' </span>
+                        <input type="text" id="city" name="city" value=" '; echo $data['city']??''; echo ' ">
+                        <span class="error"> '; echo $data['cityErr']??''; echo ' </span>
                     </div>
                 </fieldset> ';
                 
@@ -289,18 +296,18 @@ function showContactForm ($data)
                 
                 echo '<div  class="radiobuttons">
                     <label for="commPreference">Communicatievoorkeur: </label>
-                    <span class="error"> ' . $commPreferenceErr . ' </span>
+                    <span class="error"> '; echo $data['commPreferenceErr']??''; echo ' </span>
                     <ul>
                         <li>
-                            <input type="radio" id="commPreferenceEmail" name="commPreference" value="email" '; if($commPreference=="email") echo 'checked'; echo 'required>
+                            <input type="radio" id="commPreferenceEmail" name="commPreference" value="email" '; if($data['commPreference']=="email") echo 'checked'; echo 'required>
                             <label for="commPreferenceEmail">E-mail</label>
                         </li>
                         <li>
-                            <input type="radio" id="commPreferencePhone" name="commPreference" value="phone" '; if($commPreference=="phone") echo 'checked'; echo '
+                            <input type="radio" id="commPreferencePhone" name="commPreference" value="phone" '; if($data['commPreference']=="phone") echo 'checked'; echo '
                             <label for="commPreferencePhone">Telefoon</label>
                         </li>
                         <li>
-                            <input type="radio" id="commPreferencePost" name="commPreference" value="post" '; if($commPreference =="post") echo 'checked'; echo ' >
+                            <input type="radio" id="commPreferencePost" name="commPreference" value="post" '; if($data['commPreference'] =="post") echo 'checked'; echo ' >
                             <label for="commPreferencePost">Post</label>
                         </li>
                     </ul>
@@ -311,8 +318,8 @@ function showContactForm ($data)
                     <label for="message">Bericht</label>
                 </div>
                 <div>
-                    <textarea name="message" rows="10" cols="30" placeholder="Type hier je bericht..."> ' . $message . ' </textarea>
-                    <span class="error"> ' . $messageErr . ' </span>
+                    <textarea name="message" rows="10" cols="30" placeholder="Type hier je bericht..."> '; echo $data['message']??''; echo '</textarea>
+                    <span class="error"> ' ; echo $data['messageErr']??''; echo ' </span>
                 </div> ';
                 //<!--Submit button-->
                 echo '<input type="submit">
@@ -326,9 +333,9 @@ function showContactThanks ($data)
     '<div class="content block">
                 <h2>Bedankt voor uw bericht</h2>
                 <h3> Er zal zo snel mogelijk contact worden opgenomen via onderstaande contactgegevens:</h3>
-                <p> Naam:' . $firstName . ' ' . $lastName . '</p>
-                <p> E-mail: ' . $email . '</p>
-                <p> Telefoon: ' . $phone . '</p>
-                <p> Adres: ' . $street . ' ' . $housenumber . ' ' . $housenumberAddition . ' ' . $postalcode . ' ' . $city . '</p>
+                <p> Naam:' . $data['firstName'] . ' ' . $data['lastName'] . '</p>
+                <p> E-mail: ' . $data['email'] . '</p>
+                <p> Telefoon: ' . $data['phone'] . '</p>
+                <p> Adres: ' . $data['street'] . ' ' . $data['housenumber'] . ' ' . $data['housenumberAddition'] . ' ' . $data['postalcode'] . ' ' . $data['city'] . '</p>
     </div>';
 }
