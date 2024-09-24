@@ -2,7 +2,7 @@
 define('USER_FILE_NAME', "users/users.txt");
 
 function getUser(string $email): ?array
-{
+{   
     $userData = fopen(USER_FILE_NAME, "r");
     try {
 
