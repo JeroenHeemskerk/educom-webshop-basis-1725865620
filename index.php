@@ -1,8 +1,13 @@
 <?php
+session_start();
+
+require_once 'file_repository.php';
+require_once 'user_service.php';
 
 // TOP LEVEL
 $page = getRequestedPage();
 showResponsePage($page);
+
 
 
 // FUNCTIONS

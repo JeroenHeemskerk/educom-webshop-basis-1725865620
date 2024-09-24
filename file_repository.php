@@ -1,11 +1,9 @@
 <?php
 define('USER_FILE_NAME', "users/users.txt");
 
-function getUser(string $email): ?array
-{   
+function getUser(string $email): ?array {   
     $userData = fopen(USER_FILE_NAME, "r");
     try {
-
         while (!feof($userData)){
             $line = fgets($userData);
             $parts = explode ('|', $line);

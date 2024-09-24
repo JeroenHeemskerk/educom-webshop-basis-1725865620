@@ -1,25 +1,20 @@
 <?php
 
-require 'user_service.php';
-require 'file_repository.php';
-
-function getLoginInput (): string{
-    $email = getPostVar('email');
-    $password = getPostVar('password');
-
-    return $email;
-    return $password;
-}
-
 function showLoginPage ()
 {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        return getLoginInput();
+        $email = getPostVar('email');
+        $password = getPostVar('password');
         if(validLoginForm($email, $password)){
-            getUser($email);
-            doLoginUser ($user); 
-        } showLoginForm($email, $password);
-    } showLoginForm();
+            echo 'gebruiker wordt ingelogd';
+            doLoginUser($email);
+            showLoginSucceeded (); 
+        } else {showLoginForm($email, $password);
+        echo 'foute login, reponse page met login form en link naar registratie';
+    } 
+} else {
+    showLoginForm();
+}
 }
 
 function validLoginForm ($email, $password): bool{           
@@ -59,13 +54,23 @@ function showLoginForm ()
     </div>';
 }
 
-function doLoginUser ($user)
+function doLoginUser ($email)
 {
-    echo 
-    '<div class="content">
-        <h2>Welkom terug,'.$user['name'].'!</h2>
-        <p>Hier komt een bevestiging</p>
-    </div>';
-    //start session
+    $user = getUser($email);    // haal rest variabelen op uit getuser 
+
+    require_once 'session_manager.php';
+
+    setUserSession ($user); //geeft variabelen door aan session manager 
+ 
+}
+
+function showLoginSucceeded ()
+{
+    echo '<div class="content">
+    <h2>Welkom terug,';
+    echo ($_SESSION['name']);
+    echo '!</h2>
+    <p>Hier komt een bevestiging</p>
+</div>';
 }
 

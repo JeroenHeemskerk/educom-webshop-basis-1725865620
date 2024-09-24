@@ -1,5 +1,4 @@
 <?php
-require 'file_repository.php';
 
 function userExists(string $email): bool{
     if (empty(getUser($email))) {
@@ -32,7 +31,7 @@ function authenticateUser (string $email, string $password):bool{
 
     }
 
-function validEmail():bool{
+function validEmail(string $email):bool{
     if(filter_var($email, FILTER_VALIDATE_EMAIL)){
         return true;
     } return false;

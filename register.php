@@ -25,6 +25,7 @@ function validateRegisterForm ()
 
     $valid =false;
 
+
     $firstName = getPostVar('firstName');
     $lastName = getPostVar('lastName');
     $email = getPostVar('email');
@@ -71,7 +72,6 @@ function validateRegisterForm ()
     
     if(empty($firstNameErr)&&(empty($lastNameErr))&&(empty($emailErr))&&(empty($passwordErr))&&(empty($passwordRepeatErr)))
     {
-       require 'user_service.php';
        $userInput = createUserArray($firstName, $lastName, $email, $password);
        if(userExists($email)){
            $emailExistsErr = "Er bestaat al een account met dit e-mailadres";
