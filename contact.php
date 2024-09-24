@@ -3,9 +3,7 @@
 function showContactPage ()
 {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        echo 'kroket';
         $data = validateContactForm();
-        echo 'kroket';
         if($data['valid'] == true){
             showContactThanks ($data);
         } 
@@ -219,7 +217,6 @@ function validateContactForm ()
 
 function showContactForm ($data)
 {
-    echo 'kroket';
     echo
     '<div class="content">
     <h1>Contact</h1>
@@ -232,7 +229,7 @@ function showContactForm ($data)
         <label for="salutation">Aanhef:</label>
         <select id="salutation" name="salutation" required>
             <option value="">Maak een keuze</option>
-            <option value="mrs" '; if(isset($salutation) && $salutation=="mrs") echo 'selected'; echo '>Mevr.</option>
+            <option value="mrs" '; if(isset($data['salutation']) && $data['salutation']=="mrs") echo 'selected'; echo '>Mevr.</option>
             <option value="mr" '; if(isset($salutation) && $salutation=="mr") echo 'selected'; echo '>Dhr.</option>
             <option value="mx" '; if(isset($salutation) && $salutation=="mx") echo 'selected'; echo '>Mx.</option>
             <option value="undisclosed" '; if(isset($salutation) && $salutation=="undisclosed") echo 'selected'; echo '>Zeg ik liever niet</option>
@@ -296,18 +293,20 @@ function showContactForm ($data)
                 
                 echo '<div  class="radiobuttons">
                     <label for="commPreference">Communicatievoorkeur: </label>
-                    <span class="error"> '; echo $data['commPreferenceErr']??''; echo ' </span>
                     <ul>
                         <li>
-                            <input type="radio" id="commPreferenceEmail" name="commPreference" value="email" '; if($data['commPreference']=="email") echo 'checked'; echo 'required>
+                            <input type="radio" id="commPreferenceEmail" name="commPreference" value="email" '; 
+                            if(!empty($data['commPreference'])&& ($data['commPreference']=="email")) 
+                            echo 'checked'; echo '>
                             <label for="commPreferenceEmail">E-mail</label>
                         </li>
                         <li>
-                            <input type="radio" id="commPreferencePhone" name="commPreference" value="phone" '; if($data['commPreference']=="phone") echo 'checked'; echo '
+                            <input type="radio" id="commPreferencePhone" name="commPreference" value="phone" '; if(!empty($data['commPreference'])&& ($data['commPreference']=="phone")) echo 'checked'; echo '>
                             <label for="commPreferencePhone">Telefoon</label>
+                            <span class="error">'.$data['commPreferenceErr'].'</span>
                         </li>
                         <li>
-                            <input type="radio" id="commPreferencePost" name="commPreference" value="post" '; if($data['commPreference'] =="post") echo 'checked'; echo ' >
+                            <input type="radio" id="commPreferencePost" name="commPreference" value="post" '; if(!empty($data['commPreference']) && ($data['commPreference']) =="post") echo 'checked'; echo ' >
                             <label for="commPreferencePost">Post</label>
                         </li>
                     </ul>
