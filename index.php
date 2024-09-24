@@ -86,16 +86,7 @@ function showBodyStart()
 
 function showMenu ()
 {
-   echo 
-   '<div class="navbar">
-    <ul>
-        <li><a href="index.php?page=home">HOME</a></li>
-        <li><a href="index.php?page=about">ABOUT</a></li>
-        <li><a href="index.php?page=contact">CONTACT</a></li>
-        <li><a href="index.php?page=register">REGISTER</a></li>
-        <li><a href="index.php?page=login">LOGIN</a></li>
-    </ul>
-    </div>'; 
+   require 'menu.php';
 };
 
 function showContent ($page)
@@ -122,6 +113,10 @@ function showContent ($page)
             require 'login.php';
             showLoginPage();
             break;
+        case 'logout':
+            require 'logout.php';
+            doLogoutUser();
+            $page = 'home';
         default:
             require 'home.php';
             break;

@@ -6,8 +6,9 @@ function showRegisterPage ()
         if($data['valid'] == false){
             showRegisterForm ($data); 
         } else {
+            showRegisterSuccess();
             require 'login.php';
-            showLoginPage ($data);
+            showLoginForm ($data);
         }
     } else {
         $data = '';
@@ -144,5 +145,9 @@ function showRegisterForm ($data)
     </div>';
 }
 
-
-
+function showRegisterSuccess ()
+{
+    echo '<h3>
+    Registratie gelukt!
+    </h3>';   
+}
