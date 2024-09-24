@@ -114,7 +114,7 @@ function showContent ($page)
             showLoginPage();
             break;
         case 'logout':
-            require 'logout.php';
+            require_once 'session_manager.php';
             doLogoutUser();
             $page = 'home';
         default:

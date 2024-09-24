@@ -61,6 +61,7 @@ function doLoginUser ($email)
     require_once 'session_manager.php';
 
     setUserSession ($user); //geeft variabelen door aan session manager 
+    
  
 }
 

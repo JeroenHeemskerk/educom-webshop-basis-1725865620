@@ -7,4 +7,8 @@ function setUserSession($user):array{ //krijgt variabelen van login pagina, wijs
     return $_SESSION;
 }
 
-
+function doLogoutUser()
+{
+    session_unset();
+    session_destroy();
+}
