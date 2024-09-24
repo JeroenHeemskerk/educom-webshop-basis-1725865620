@@ -128,3 +128,18 @@ function showBodyEnd ()
 {
     echo '</body>';
 };
+
+function cleanString($string){
+    $string = trim($string);
+    $string = stripslashes($string);
+    $string = htmlspecialchars($string);
+    return $string;
+}
+
+function getPostVar ($key, $default=''){
+    if(isset($_POST[$key])){
+        return cleanString($_POST[$key]);
+    } else {
+        return $default;
+    }
+}

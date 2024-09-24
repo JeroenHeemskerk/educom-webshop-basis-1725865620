@@ -25,20 +25,6 @@ function validateContactForm ()
     
     $valid = false;
 
-    function cleanString($string) {
-        $string = trim($string);
-        $string = stripslashes($string);
-        $string = htmlspecialchars($string);
-        return $string;
-    }
-
-    function getPostVar($key, $default=''){
-        if(isset($_POST[$key])){
-            return cleanString($_POST[$key]);
-        }
-        return $default;
-    }
-
     $salutation = getPostVar('salutation');
     $firstName = getPostVar('firstName');
     $lastName = getPostVar('lastName');

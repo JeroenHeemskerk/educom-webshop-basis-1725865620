@@ -6,6 +6,7 @@ function showRegisterPage ()
         if($data['valid'] == false){
             showRegisterForm ($data); 
         } else {
+            require 'login.php';
             showLoginPage ($data);
         }
     } else {
@@ -23,21 +24,6 @@ function validateRegisterForm ()
     $firstNameErr = $lastNameErr = $emailErr = $emailExistsErr = $passwordErr = $passwordRepeatErr = '';
 
     $valid =false;
-
-    function cleanString($string){
-        $string = trim($string);
-        $string = stripslashes($string);
-        $string = htmlspecialchars($string);
-        return $string;
-    }
-
-    function getPostVar ($key, $default=''){
-        if(isset($_POST[$key])){
-            return cleanString($_POST[$key]);
-        } else {
-            return $default;
-        }
-    }
 
     $firstName = getPostVar('firstName');
     $lastName = getPostVar('lastName');
@@ -158,13 +144,5 @@ function showRegisterForm ($data)
     </div>';
 }
 
-function showLoginPage ($data)
-{
-    echo 
-    '<div class="content">
-        <h2>Welkom, '; echo $data['firstName']??''; echo '!</h2>
-        <p>Hier komt login</p>
-    </div>';
-}
 
 
