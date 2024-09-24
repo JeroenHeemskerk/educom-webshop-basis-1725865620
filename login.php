@@ -1,9 +1,26 @@
 <?php
+function showLoginPage ()
+{
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $data = validateLoginForm();
+        if($data['valid'] == false){
+            showLoginForm ($data); 
+        } else {
+            doLoginUser ($data);
+        }
+    } else {
+        $data = '';
+        showLoginForm($data);
+    }
+}
+
 function validateLoginForm ()
 {
     $email = $password = '';
     $emailErr = $passwordErr = '';
     $valid =false;
+
+    require 'user_service.php';
 
     function cleanString($string){
         $string = trim($string);
@@ -36,8 +53,8 @@ function validateLoginForm ()
     }
 
     if(!empty($email&&$password)&&(userExists($email))){
-        require 'user_service.php';
         if (authenticateUser($email, $password)) {
+            $valid = true;
             require 'session_manager.php';
         } else {
             $passwordErr = "Wachtwoord onjuist";
@@ -46,9 +63,12 @@ function validateLoginForm ()
             $emailErr = "Er is geen account met dit e-mailadres geregistreerd";
             echo "Link naar register pagina";
         }
+
+    $data = array('email' => $email, 'emailErr' => $emailErr, 'password' => $passwordErr, 'valid' => $valid);
+    return $data;
 }
 
-function showLoginForm ()
+function showLoginForm ($data)
 {
     echo '<h2>Login</h2>
     <div class="content">
@@ -57,16 +77,16 @@ function showLoginForm ()
         <fieldset>
         <div>
             <label for=email>E-mail:</label>
-            <input type="email" id="email" name="email" value="' . $email . '">
+            <input type="email" id="email" name="email" value="'; echo $data['email']??''; echo '">
             <div>
-                <span class="error">'.$emailErr.'</span>
+                <span class="error">' ; echo $data['emailErr']??''; echo '</span>
             </div>
         </div>
         <div>
             <label for=password>Wachtwoord:</label>
-            <input type="password" id="password" name="password" value="'.$password.'">
+            <input type="password" id="password" name="password" value="'; echo $data['password']??''; echo '">
             <div>
-                <span class="error">'.$passwordErr.'</span>
+                <span class="error">' ; echo $data['passwordErr']??''; echo '</span>
             </div>
         </div>
         <div>
@@ -77,7 +97,7 @@ function showLoginForm ()
     </div>';
 }
 
-function doLoginUser ()
+function doLoginUser ($data)
 {
     echo 
     '<div class="content">
@@ -87,16 +107,3 @@ function doLoginUser ()
     //start session
 }
 
-function showLoginPage ()
-{
-    if($_SERVER['REQUEST_METHOD']=="POST") {
-        validateLoginForm();
-        if(!$valid) {
-            showLoginForm();
-        } else {
-            doLoginUser();
-        }
-    } else {
-        showLoginForm ();
-    }
-}

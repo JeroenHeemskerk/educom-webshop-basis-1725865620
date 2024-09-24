@@ -1,4 +1,18 @@
 <?php
+function showRegisterPage ()
+{
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $data = validateRegisterForm();
+        if($data['valid'] == false){
+            showRegisterForm ($data); 
+        } else {
+            showLoginPage ($data);
+        }
+    } else {
+        $data = '';
+        showRegisterForm($data);
+    }
+}
 
 function validateRegisterForm ()
 {
@@ -84,9 +98,26 @@ function validateRegisterForm ()
        $valid = true;
        }
     }
+
+    $data = array(
+        'firstName' => $firstName,
+        'lastName' => $lastName,
+        'fullName' => $fullName,
+        'email' => $email,
+        'password' => $password,
+        'passwordRepeat' => $passwordRepeat,
+        'firstNameErr' => $firstNameErr,
+        'lastNameErr' => $lastNameErr,
+        'emailErr' => $emailErr,
+        'emailExistsErr' => $emailExistsErr,
+        'passwordErr' => $passwordErr,
+        'passwordRepeatErr' => $passwordRepeatErr,
+        'valid' => $valid
+    );
+    return $data;
 }
 
-function showRegisterForm ()
+function showRegisterForm ($data)
 {
     echo '<h2>Maak een account aan</h2>
     <div class="content">
@@ -95,29 +126,29 @@ function showRegisterForm ()
         <fieldset>
         <div>
             <label for=firstName>Voornaam:</label>
-            <input type="text" id="firstName" name="firstName" value= "' . $firstName . '"> 
-            <span class="error">'.$firstNameErr.'</span>
+            <input type="text" id="firstName" name="firstName" value= "'; echo $data['firstName']??''; echo '"> 
+            <span class="error">'; echo $data['firstNameErr']??''; echo'</span>
         </div>
         <div>
             <label for=lastName>Achternaam:</label>
-            <input type="text" id="lastName" name="lastName" value= "' . $lastName . '">
-            <span class="error">'.$lastNameErr.'</span>
+            <input type="text" id="lastName" name="lastName" value= "'; echo $data['lastName']??''; echo '">
+            <span class="error">'; echo $data['lastNameErr']??''; echo'</span>
         </div>
         <div>
             <label for=email>E-mail:</label>
-            <input type="email" id="email" name="email" value="' . $email . '">
-            <span class="error">'.$emailErr.'</span>
-            <span class="error">'.$emailExistsErr.'</span>
+            <input type="email" id="email" name="email" value="'; echo $data['email']??''; echo  '">
+            <span class="error">'; echo $data['emailErr']??''; echo'</span>
+            <span class="error">'; echo $data['emailExistsErr']??''; echo'</span>
         </div>
         <div>
             <label for=password>Wachtwoord:</label>
-            <input type="password" id="password" name="password" value="'.$password.'">
-            <span class="error">'.$passwordErr.'</span>
+            <input type="password" id="password" name="password" value="'; echo $data['password']??''; echo '">
+            <span class="error">'; echo $data['passwordErr']??''; echo'</span>
         </div>
         <div>
             <label for=passwordRepeat>Herhaal je wachtwoord:</label>
-            <input type="password" id="passwordRepeat" name="passwordRepeat" value="'.$passwordRepeat.'">
-            <span class="error">'.$passwordRepeatErr.'</span>
+            <input type="password" id="passwordRepeat" name="passwordRepeat" value="'; echo $data['passwordRepeat']??''; echo '">
+            <span class="error">'; echo $data['passwordRepeatErr']??''; echo'</span>
         </div>
         <div>
             <input type="submit">
@@ -127,25 +158,13 @@ function showRegisterForm ()
     </div>';
 }
 
-function showLoginPage ()
+function showLoginPage ($data)
 {
     echo 
     '<div class="content">
-        <h2>Welkom, '.$firstName.'!</h2>
+        <h2>Welkom, '; echo $data['firstName']??''; echo '!</h2>
         <p>Hier komt login</p>
-        <p>'.$test.'</p>
     </div>';
 }
 
-function showRegisterPage ()
-{
-    if($_SERVER["REQUEST_METHOD"] == "POST") {
-        validateRegisterForm();
-        if(!$valid) {
-            showContactForm();
-        } else {
-            require 'login.php';
-            showLoginPage ();
-        }
-    } else showRegisterForm();
-}
+
