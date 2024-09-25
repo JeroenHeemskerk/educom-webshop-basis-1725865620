@@ -1,6 +1,14 @@
 <?php
 require_once 'session_manager.php';
 
+if (!empty($_SESSION))
+{  
+    showActiveMenu();
+} else {
+    showInactiveMenu();
+}
+
+
 function showActiveMenu()
 {
     echo 

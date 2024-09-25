@@ -6,12 +6,3 @@ function setUserSession($user):array{ //krijgt variabelen van login pagina, wijs
     $_SESSION['password'] = $user['password'];
     return $_SESSION;
 }
-
-function sessionActive($user):bool{
-    if (!empty(setUserSession($user))){
-        $sessionActive = true;
-    } else {
-        $sessionActive = false;
-    }
-    return $sessionActive;
-}

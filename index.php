@@ -88,12 +88,7 @@ function showBodyStart()
 function showMenu ()
 {
    require_once 'menu.php';
-   if (!$sessionActive){
-    showInactiveMenu();
-    } else {
-    showActiveMenu ();
 }
-};
 
 function showContent ($page)
 {
