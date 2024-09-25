@@ -6,7 +6,7 @@ function getUser(string $email): ?array {
     try {
         while (!feof($userData)){
             $line = fgets($userData);
-            $parts = explode ('|', $line);
+            $parts = transformRecordToArray($line);
             if($parts[0] == $email) {
                 $foundUser = array('email' => $parts[0], 'name' => $parts[1], 'password' => $parts[2]);
                 return $foundUser;
