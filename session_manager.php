@@ -4,5 +4,6 @@ function setUserSession($user):array{ //krijgt variabelen van login pagina, wijs
     $_SESSION['name'] = $user['name'];
     $_SESSION['email'] = $user['email'];
     $_SESSION['password'] = $user['password'];
+    $_SESSION['loggedIn'] = 'yes';
     return $_SESSION;
 }

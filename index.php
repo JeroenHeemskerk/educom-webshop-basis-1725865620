@@ -9,8 +9,6 @@ require_once 'session_manager.php';
 $page = getRequestedPage();
 showResponsePage($page);
 
-
-
 // FUNCTIONS
 function getRequestedPage()
 {
@@ -88,6 +86,11 @@ function showBodyStart()
 function showMenu ()
 {
    require_once 'menu.php';
+   if (isset($_SESSION['loggedIn'])) {
+    showActiveMenu();
+   } else  {
+    showInactiveMenu();
+   }
 }
 
 function showContent ($page)

@@ -1,4 +1,5 @@
 <?php
+require_once 'session_manager.php';
 
 function showLoginPage ()
 {
@@ -57,11 +58,8 @@ function showLoginForm ()
 function doLoginUser ($email)
 {
     $user = getUser($email);    // haal rest variabelen op uit getuser 
+    setUserSession ($user);     //geeft variabelen door aan session manager 
 
-    require_once 'session_manager.php';
-
-    setUserSession ($user); //geeft variabelen door aan session manager 
- 
 }
 
 function showLoginSucceeded ()
