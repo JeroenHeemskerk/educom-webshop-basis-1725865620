@@ -7,7 +7,7 @@ function showRegisterPage ()
             showRegisterForm ($data); 
         } else {
             showRegisterSuccess();
-            require 'login.php';
+            require_once 'login.php';
             showLoginForm ($data);
         }
     } else {

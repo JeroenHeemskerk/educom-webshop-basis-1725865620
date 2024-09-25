@@ -3,6 +3,7 @@ session_start();
 
 require_once 'file_repository.php';
 require_once 'user_service.php';
+require_once 'session_manager.php';
 
 // TOP LEVEL
 $page = getRequestedPage();
@@ -86,7 +87,12 @@ function showBodyStart()
 
 function showMenu ()
 {
-   require 'menu.php';
+   require_once 'menu.php';
+   if (!$sessionActive){
+    showInactiveMenu();
+    } else {
+    showActiveMenu ();
+}
 };
 
 function showContent ($page)
@@ -94,31 +100,32 @@ function showContent ($page)
     switch($page)
     {
         case 'home':
-            require 'home.php';
+            require_once 'home.php';
             showHomePage();
             break;
         case 'about':
-            require 'about.php';
+            require_once 'about.php';
             showAboutPage ();
             break;
         case 'contact':
-            require 'contact.php';
+            require_once 'contact.php';
             showContactPage();
             break;
         case 'register':
-            require 'register.php';
+            require_once 'register.php';
             showRegisterPage();
             break;
         case 'login';
-            require 'login.php';
+            require_once 'login.php';
             showLoginPage();
             break;
         case 'logout':
-            require_once 'session_manager.php';
+            require_once 'logout.php';
+            require_once 'home.php';
             doLogoutUser();
-            $page = 'home';
+            showHomePage();
         default:
-            require 'home.php';
+            require_once 'home.php';
             break;
     }
 
